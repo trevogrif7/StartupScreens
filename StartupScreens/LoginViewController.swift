@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
     
     func animateBackgroundColor() {
         
-        // Managa iterator
+        // Update iterator
         if colorIterator == backgroundColorsArray.count-1 {
             colorIterator = 0
         }
