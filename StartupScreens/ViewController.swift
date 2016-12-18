@@ -29,11 +29,6 @@ class ViewController: UIViewController {
         self.logoImage.alpha = 0
         
         getStartedButton.titleLabel?.font = UIFont (name: "ArialRoundedMTBold", size: 15)
-//        getStartedButton.layer.shadowColor = UIColor.lightGray.cgColor
-//        getStartedButton.layer.masksToBounds = false
-//        getStartedButton.layer.shadowOpacity = 1.0
-//        getStartedButton.layer.shadowRadius = 0
-//        getStartedButton.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         
     }
     
@@ -47,7 +42,7 @@ class ViewController: UIViewController {
         }, completion: { finished in
             
             // Fade in and shift the Get Started button
-            UIView.animate(withDuration: 1.0, delay: 0.6, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.5, delay: 0.6, options: .curveEaseOut, animations: {
                 self.getStartedButton.alpha = 1.0
                 self.getStartedButton.center.y -= 40
                 
