@@ -10,10 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var logoImage: UIImageView!
+    @IBOutlet weak var logoLabel: UILabel!
+    @IBOutlet weak var registeredTrademarkLabel: UILabel!
     @IBOutlet weak var getStartedButton: UIButton!
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var blurVisualEffect: UIVisualEffectView!
+    @IBOutlet weak var mottoLabel: UILabel!
     
     // Array of background images
     var backgroundImageArray = [UIImage]()
@@ -25,18 +27,23 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         // Remove navigation pane from first UI View
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
-//        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
         
         // Initialize attributes
         self.backgroundImage.alpha = 0
         self.getStartedButton.alpha = 0
-        self.logoImage.alpha = 0
-        self.getStartedButton.titleLabel?.font = UIFont (name: "ArialRoundedMTBold", size: 15)
+        self.logoLabel.alpha = 0
+        self.mottoLabel.alpha = 0
+        self.registeredTrademarkLabel.alpha = 0
+        self.getStartedButton.titleLabel?.font = UIFont (name: "ArialRoundedMTBold", size: 18)
+        
+        self.logoLabel.font = UIFont(name: "GillSans", size: 120)
+        self.mottoLabel.font = UIFont(name: "Arial", size: 25)
         
         // Set up background image array
-        self.backgroundImageArray = [UIImage(named: "background1")!, UIImage(named: "background2")!, UIImage(named: "background3")!, UIImage(named: "background4")!, UIImage(named: "background5")!]
+        self.backgroundImageArray = [UIImage(named: "background1")!, UIImage(named: "background2")!, UIImage(named: "background3")!, UIImage(named: "background4")!, UIImage(named: "background5")!, UIImage(named: "background6")!]
         
     }
     
@@ -54,12 +61,16 @@ class ViewController: UIViewController {
                 self.getStartedButton.alpha = 1.0
                 self.getStartedButton.center.y -= 40
                 
+                self.mottoLabel.alpha = 1
+
+                
             })
         })
         
         // Fade in logo
         UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseOut, animations: {
-            self.logoImage.alpha = 1.0
+            self.logoLabel.alpha = 1.0
+            self.registeredTrademarkLabel.alpha = 1.0
         })
         
         // Start background image loop
@@ -99,13 +110,20 @@ class ViewController: UIViewController {
             self.animateBackgroundImage()
         }
     }
+    
+    func displayAnimatedMessages () {
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
 
     @IBAction func getStartedButtonPressed(_ sender: Any) {
+        self.backgroundImage.layer.removeAllAnimations()
     }
 
 }
