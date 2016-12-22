@@ -17,11 +17,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var blurVisualEffect: UIVisualEffectView!
     @IBOutlet weak var mottoLabel: UILabel!
     
-    // Array of background images
-    var backgroundImageArray = [UIImage]()
-    var imageIterator = 0
-    let nextImage = UIImageView()
-    let currentImage = UIImageView()
+    // Variables to control background animation
+    var backgroundImageArray : [UIImage] = [UIImage]()
+    var imageIterator : Int = 0
+    let nextImage : UIImageView = UIImageView()
+    let currentImage : UIImageView = UIImageView()
+    var continueBackgroundAnimation : Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,7 @@ class ViewController: UIViewController {
         self.logoLabel.alpha = 0
         self.mottoLabel.alpha = 0
         self.registeredTrademarkLabel.alpha = 0
-        self.getStartedButton.titleLabel?.font = UIFont (name: "ArialRoundedMTBold", size: 18)
+        self.getStartedButton.titleLabel?.font = UIFont (name: "GillSans", size: 20)
         
         self.logoLabel.font = UIFont(name: "GillSans", size: 120)
         self.mottoLabel.font = UIFont(name: "Arial", size: 25)
@@ -60,10 +61,8 @@ class ViewController: UIViewController {
             UIView.animate(withDuration: 0.5, delay: 0.6, options: .curveEaseOut, animations: {
                 self.getStartedButton.alpha = 1.0
                 self.getStartedButton.center.y -= 40
-                
                 self.mottoLabel.alpha = 1
 
-                
             })
         })
         
@@ -100,14 +99,15 @@ class ViewController: UIViewController {
         self.view.insertSubview(nextImage, aboveSubview: backgroundImage)
         self.view.insertSubview(currentImage, aboveSubview: nextImage)
         
-        // Animate background color transition. Recursivley call the
-        // function infinitely.
-        UIView.animate(withDuration: 4.5, delay: 0, options: [.allowUserInteraction, .curveEaseIn], animations: {
-            self.currentImage.alpha = 0
-            self.nextImage.alpha = 1
-        }) { (Bool) in
-            self.backgroundImage.image = self.nextImage.image
-            self.animateBackgroundImage()
+        if continueBackgroundAnimation == true {
+            // Animate background color transition. Recursivley call the function
+            UIView.animate(withDuration: 4.5, delay: 0, options: [.allowUserInteraction, .curveEaseIn], animations: {
+                self.currentImage.alpha = 0
+                self.nextImage.alpha = 1
+            }) { (Bool) in
+                self.backgroundImage.image = self.nextImage.image
+                self.animateBackgroundImage()
+            }
         }
     }
     
@@ -123,7 +123,7 @@ class ViewController: UIViewController {
 
 
     @IBAction func getStartedButtonPressed(_ sender: Any) {
-        self.backgroundImage.layer.removeAllAnimations()
+        continueBackgroundAnimation = false
     }
 
 }
