@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -34,14 +34,19 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var createAccountSaveButton: UIButton!
 
     // Variables to control background animation
-    var backgroundColorsArray = [UIColor]()
-    var colorIterator  = 0
-    var continueAnimation = true
+    //var backgroundColorsArray = [UIColor]()
+    //var colorIterator  = 0
+    
+    // Used to get images
+    let imagePickerController = UIImagePickerController()
     
     let OFF_SCREEN_POINT = 800.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Initialize Delegates
+        imagePickerController.delegate = self
         
         // Initialize attributes
         signInButton.layer.borderWidth = 1.0
@@ -58,7 +63,6 @@ class LoginViewController: UIViewController {
         self.signInButton.isHidden = true
         self.forgotPasswordButton.isHidden = true
         self.createAccountButton.isHidden = true
-        
         
         self.emailTextField.font = UIFont(name: "GillSans", size: 20)
         self.passwordTextField.font = UIFont(name: "GillSans", size: 20)
@@ -107,12 +111,14 @@ class LoginViewController: UIViewController {
         self.createAccountTopView.layer.shadowOffset = CGSize(width: -5.0, height: 3.0)
         
         // Create background color array for color changing animation
-        self.backgroundColorsArray = [
-            UIColor(red: 00/255, green: 112/255, blue: 190/255, alpha: 1.0),
-            UIColor(red: 00/255, green: 75/255, blue: 100/255, alpha: 1.0)]
+        //self.backgroundColorsArray = [
+        //    UIColor(red: 00/255, green: 112/255, blue: 190/255, alpha: 1.0),
+        //    UIColor(red: 00/255, green: 75/255, blue: 100/255, alpha: 1.0)]
         
         // Constantly shift background color
-        animateBackgroundColor()
+        //animateBackgroundColor()
+        
+        self.view.backgroundColor = UIColor(red: 00/255, green: 112/255, blue: 190/255, alpha: 1.0)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -159,28 +165,24 @@ class LoginViewController: UIViewController {
     }
     
     
-    func animateBackgroundColor() {
-        
-        // Update iterator
-        if colorIterator == backgroundColorsArray.count-1 {
-            colorIterator = 0
-        }
-        else {
-            colorIterator += 1
-        }
-        
-        
-        if continueAnimation == true {
-
-            // Animate background color transition. Recursivley call the
-            // function infinitely.
-            UIView.animate(withDuration: 4.0, delay: 0, options: .allowUserInteraction, animations: {
-                self.view.backgroundColor = self.backgroundColorsArray[self.colorIterator]
-            }) { (Bool) in
-                self.animateBackgroundColor()
-            }
-        }
-    }
+//    func animateBackgroundColor() {
+//        
+//        // Update iterator
+//        if colorIterator == backgroundColorsArray.count-1 {
+//            colorIterator = 0
+//        }
+//        else {
+//            colorIterator += 1
+//        }
+//        
+//        // Animate background color transition. Recursivley call the
+//        // function infinitely.
+//        UIView.animate(withDuration: 4.0, delay: 0, options: [.allowUserInteraction], animations: {
+//            self.view.backgroundColor = self.backgroundColorsArray[self.colorIterator]
+//        }, completion: { (complete)  in
+//            self.animateBackgroundColor()
+//        })
+//    }
     
     @IBAction func createAccountButtonPressed(_ sender: Any) {
         
@@ -195,7 +197,7 @@ class LoginViewController: UIViewController {
         self.createAccountUsernameTextField.becomeFirstResponder()
         
         // Stop the animation in the background
-        self.continueAnimation = false
+        //self.view.layer.removeAllAnimations()
         
         // Add the create account view and set its position
         self.view.addSubview(createAccountView)
@@ -233,10 +235,7 @@ class LoginViewController: UIViewController {
         self.emailTextField.becomeFirstResponder()
         
         // Restart the animation in the background
-        self.continueAnimation = true
-        self.animateBackgroundColor()
-        
-        //self.createAccountView.removeFromSuperview()
+        //self.animateBackgroundColor()
         
         // Animate dismissal of create account view
         UIView.animate(withDuration: 0.3, animations: {
@@ -249,27 +248,160 @@ class LoginViewController: UIViewController {
         }) { (Bool) in
             self.createAccountView.removeFromSuperview()
         }
-
     }
     
     @IBAction func createAccountSaveButtonPressed(_ sender: UIButton) {
+        
+        // Check to see that passwords match
+        if createAccountPasswordTextField.text == createAccountReEnterPasswordTextField.text {
+            FIRAuth.auth()?.createUser(withEmail: createAccountEmailTextField.text!, password: createAccountPasswordTextField.text!
+                , completion: { (user, error) in
+                    
+                    if error != nil {
+                        // Seee GOCR app for potential errors and remedies
+                        
+                        print("ERROR: Account was not created")
+                    }
+                    else {
+                        // Account created
+                        
+                        // Stop the animation in the background
+                        //self.view.layer.removeAllAnimations()
+                        
+                        // Sign the user in
+                        print("Account was created")
+                        //self.signIn()
+                    }
+            })
+        }
+        else {
+            print("Passwords don't match")
+        }
+        
     }
     
-    func login() {
+    func signIn() {
         
         FIRAuth.auth()?.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!
             , completion: { (user, error) in
                 
                 if error != nil {
-                    print("login didn't work")
+                    print("Sign in didn't work")
                     // Seee GOCR app for potential errors and remedies
                 }
                 else {
-                    print("login worked correctly")
+                    print("You were signed in correctly")
                 }
         })
     }
 
-    @IBAction func profileImageTapped(_ sender: UITapGestureRecognizer) {
+    @IBAction func signInButtonPressed(_ sender: UIButton) {
+        self.signIn()
     }
+    
+    @IBAction func profileImageTapped(_ sender: UITapGestureRecognizer) {
+
+        // If we have access to the camera but not the photo library
+        if UIImagePickerController.isSourceTypeAvailable(.camera) && !(UIImagePickerController.isSourceTypeAvailable(.photoLibrary)) {
+            
+            self.takePicture()
+   
+        // If we have access to the photo library but not the camera
+        } else if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) && !(UIImagePickerController.isSourceTypeAvailable(.camera)) {
+            
+            self.openPhotoLibrary()
+        
+        // If we have access to both the camera and photo library
+        } else if UIImagePickerController.isSourceTypeAvailable(.camera) && UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            
+            let alertController = UIAlertController(title: "Please Select", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+            
+            let libraryAction = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.default, handler: {UIAlertAction in self.openPhotoLibrary()})
+            let cameraAction = UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.default, handler: {UIAlertAction in self.takePicture()})
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+            
+            alertController.addAction(libraryAction)
+            alertController.addAction(cameraAction)
+            alertController.addAction(cancelAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+
+        // If we don't have access to either source of images
+        } else {
+            let alertController = UIAlertController(title: "Alert", message: "Your device does not support the camera or photo library", preferredStyle: UIAlertControllerStyle.alert)
+            
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("I'm in imagePickerController didFinishPickingMediaWithInfo")
+
+        //let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+//        let imageData = UIImageJPEGRepresentation(image, 1.0)
+//        let thumbNailData = UIImageJPEGRepresentation(image, 0.1)
+//        let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
+//        let entityDescription = NSEntityDescription.entity(forEntityName: "FeedItem", in: managedObjectContext)
+//        
+//        let feedItem = FeedItem(entity: entityDescription!, insertInto: managedObjectContext)
+//        
+//        feedItem.image = imageData
+//        feedItem.caption = "Temp Pic Caption"
+//        feedItem.thumbNail = thumbNailData
+//        feedItem.longitude = locationManager.location?.coordinate.longitude as NSNumber?
+//        feedItem.latitude = locationManager.location?.coordinate.latitude as NSNumber?
+//        feedItem.filtered = false
+//        
+//        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+//        
+//        feedArray.append(feedItem)
+//        
+//        self.dismiss(animated: true, completion: nil)
+//        
+//        self.collectionView.reloadData()
+        
+
+        
+        
+        
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let imageData = UIImageJPEGRepresentation(image, 1.0)
+        let thumbNailData = UIImageJPEGRepresentation(image, 0.1)
+
+        createAccountProfileImage.contentMode = .scaleAspectFit
+        createAccountProfileImage.image = image
+        dismiss(animated:true, completion: nil)
+
+    }
+    
+   
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+       print("I'm in imagePickerControllerDidCancel")
+        dismiss(animated: true, completion: nil)
+    }
+
+    
+    // Helper funcitons for accessing the camera and photo library
+    func takePicture() {
+        
+        // Select Camera as the source
+        imagePickerController.sourceType = .camera
+        imagePickerController.mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera)!
+        imagePickerController.allowsEditing = false
+        self.present(imagePickerController, animated: true, completion: nil)
+        
+    }
+    
+    func openPhotoLibrary() {
+        
+        // Select Photo Library as the source
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        imagePickerController.allowsEditing = false
+        self.present(imagePickerController, animated: true, completion: nil)
+        
+    }
+
 }

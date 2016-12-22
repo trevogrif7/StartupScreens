@@ -17,12 +17,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var blurVisualEffect: UIVisualEffectView!
     @IBOutlet weak var mottoLabel: UILabel!
     
-    // Variables to control background animation
+    // Variables to control animation of the background
     var backgroundImageArray : [UIImage] = [UIImage]()
     var imageIterator : Int = 0
     let nextImage : UIImageView = UIImageView()
     let currentImage : UIImageView = UIImageView()
-    var continueBackgroundAnimation : Bool = true
+    var continueAnimatingBackground : Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,8 +98,8 @@ class ViewController: UIViewController {
         // Add the image views as subviews
         self.view.insertSubview(nextImage, aboveSubview: backgroundImage)
         self.view.insertSubview(currentImage, aboveSubview: nextImage)
-        
-        if continueBackgroundAnimation == true {
+      
+        if continueAnimatingBackground == true {
             // Animate background color transition. Recursivley call the function
             UIView.animate(withDuration: 4.5, delay: 0, options: [.allowUserInteraction, .curveEaseIn], animations: {
                 self.currentImage.alpha = 0
@@ -120,10 +120,18 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-
     @IBAction func getStartedButtonPressed(_ sender: Any) {
-        continueBackgroundAnimation = false
+        self.continueAnimatingBackground = false
+        self.currentImage.layer.removeAllAnimations()
+        self.nextImage.layer.removeAllAnimations()
+        self.backgroundImage.layer.removeAllAnimations()
+        self.getStartedButton.layer.removeAllAnimations()
+        self.getStartedButton.center.y += 40
+        self.mottoLabel.layer.removeAllAnimations()
+        self.logoLabel.layer.removeAllAnimations()
+        self.registeredTrademarkLabel.layer.removeAllAnimations()
+
+
     }
 
 }

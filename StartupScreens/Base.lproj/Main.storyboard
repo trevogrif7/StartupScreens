@@ -140,6 +140,9 @@
                                 <state key="normal" title="Sign In">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="signInButtonPressed:" destination="o3K-Pb-Qkj" eventType="touchUpInside" id="fK5-fg-IRa"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A5o-00-wzs">
                                 <rect key="frame" x="16" y="249" width="124" height="30"/>
@@ -166,7 +169,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.40000000000000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.44024258852005005" blue="0.743369460105896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="createAccountBackgroundView" destination="go3-3B-Pdz" id="bkK-R6-RyV"/>
@@ -230,10 +233,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.40000000000000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="gradientIsAnimate" value="NO"/>
-                            </userDefinedRuntimeAttributes>
+                            <color key="backgroundColor" red="0.0" green="0.44024258852005005" blue="0.743369460105896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rIc-d2-bbs">
                             <rect key="frame" x="38" y="99" width="293" height="215"/>
@@ -287,12 +287,12 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                 </textField>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="rJN-NS-s7F">
+                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="rJN-NS-s7F">
                                     <rect key="frame" x="28" y="-32" width="55" height="55"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <gestureRecognizers/>
                                     <connections>
-                                        <outletCollection property="gestureRecognizers" destination="Fhc-fM-Ro1" appends="YES" id="K2s-fV-jb4"/>
+                                        <outletCollection property="gestureRecognizers" destination="C86-Ui-vKH" appends="YES" id="K1a-rc-sVn"/>
                                     </connections>
                                 </imageView>
                             </subviews>
@@ -301,9 +301,9 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
-                <tapGestureRecognizer id="Fhc-fM-Ro1">
+                <tapGestureRecognizer id="C86-Ui-vKH">
                     <connections>
-                        <action selector="profileImageTapped:" destination="o3K-Pb-Qkj" id="LJs-zh-cDn"/>
+                        <action selector="profileImageTapped:" destination="o3K-Pb-Qkj" id="Aq0-zN-h9L"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
