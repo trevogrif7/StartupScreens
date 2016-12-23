@@ -40,7 +40,9 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     // Used to get images
     let imagePickerController = UIImagePickerController()
     
+    // Variables used to help animate items on view
     let OFF_SCREEN_POINT = 800.0
+    var initialLoadHasOccured = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +51,8 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         imagePickerController.delegate = self
         
         // Initialize attributes
+        initialLoadHasOccured = false
+        
         signInButton.layer.borderWidth = 1.0
         signInButton.layer.borderColor = UIColor.white.cgColor
         
@@ -133,29 +137,34 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         self.forgotPasswordButton.isHidden = false
         self.createAccountButton.isHidden = false
 
-        
-        UIView.animate(withDuration: 1.0, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-            self.emailTextField.center.x += CGFloat(self.OFF_SCREEN_POINT)
+        if self.initialLoadHasOccured == false {
             
-        })
-        
-        UIView.animate(withDuration: 1.0, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-            self.passwordTextField.center.x += CGFloat(self.OFF_SCREEN_POINT)
+            // Only execute animation when viewcontroller is first loaded
+            self.initialLoadHasOccured = true
             
-        })
-        
-        UIView.animate(withDuration: 1.0, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-            self.signInButton.center.x += CGFloat(self.OFF_SCREEN_POINT)
+            UIView.animate(withDuration: 1.0, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+                self.emailTextField.center.x += CGFloat(self.OFF_SCREEN_POINT)
+                
+            })
             
-        })
-        UIView.animate(withDuration: 1.0, delay: 0.7, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-            self.forgotPasswordButton.center.x += CGFloat(self.OFF_SCREEN_POINT)
+            UIView.animate(withDuration: 1.0, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+                self.passwordTextField.center.x += CGFloat(self.OFF_SCREEN_POINT)
+                
+            })
             
-        })
-        UIView.animate(withDuration: 1.0, delay: 0.7, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-            self.createAccountButton.center.x += CGFloat(self.OFF_SCREEN_POINT)
-            
-        })
+            UIView.animate(withDuration: 1.0, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+                self.signInButton.center.x += CGFloat(self.OFF_SCREEN_POINT)
+                
+            })
+            UIView.animate(withDuration: 1.0, delay: 0.7, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+                self.forgotPasswordButton.center.x += CGFloat(self.OFF_SCREEN_POINT)
+                
+            })
+            UIView.animate(withDuration: 1.0, delay: 0.7, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+                self.createAccountButton.center.x += CGFloat(self.OFF_SCREEN_POINT)
+                
+            })
+        }
         
     }
     
@@ -223,7 +232,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     @IBAction func createAccountCancelButtonPressed(_ sender: UIButton) {
-        
+
         // Disable buttons on view controller
         self.emailTextField.isEnabled = true
         self.passwordTextField.isEnabled = true
@@ -248,6 +257,8 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }) { (Bool) in
             self.createAccountView.removeFromSuperview()
         }
+        
+        // TODO: Set all fields back to their default blank states
     }
     
     @IBAction func createAccountSaveButtonPressed(_ sender: UIButton) {
@@ -337,49 +348,27 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        print("I'm in imagePickerController didFinishPickingMediaWithInfo")
 
-        //let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-//        let imageData = UIImageJPEGRepresentation(image, 1.0)
-//        let thumbNailData = UIImageJPEGRepresentation(image, 0.1)
-//        let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
-//        let entityDescription = NSEntityDescription.entity(forEntityName: "FeedItem", in: managedObjectContext)
-//        
-//        let feedItem = FeedItem(entity: entityDescription!, insertInto: managedObjectContext)
-//        
-//        feedItem.image = imageData
-//        feedItem.caption = "Temp Pic Caption"
-//        feedItem.thumbNail = thumbNailData
-//        feedItem.longitude = locationManager.location?.coordinate.longitude as NSNumber?
-//        feedItem.latitude = locationManager.location?.coordinate.latitude as NSNumber?
-//        feedItem.filtered = false
-//        
-//        (UIApplication.shared.delegate as! AppDelegate).saveContext()
-//        
-//        feedArray.append(feedItem)
-//        
-//        self.dismiss(animated: true, completion: nil)
-//        
-//        self.collectionView.reloadData()
-        
-
-        
-        
-        
+        // Get image and set as profile picture
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let imageData = UIImageJPEGRepresentation(image, 1.0)
-        let thumbNailData = UIImageJPEGRepresentation(image, 0.1)
-
-        createAccountProfileImage.contentMode = .scaleAspectFit
+        createAccountProfileImage.contentMode = .scaleToFill
         createAccountProfileImage.image = image
-        dismiss(animated:true, completion: nil)
 
+        // Dismiss image picker
+        dismiss(animated:true, completion: nil)
+        
+        // Move cursor back to username test box
+        self.createAccountUsernameTextField.becomeFirstResponder()
     }
     
    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-       print("I'm in imagePickerControllerDidCancel")
+        
+        // Dismiss image picker
         dismiss(animated: true, completion: nil)
+        
+        // Move cursor back to username test box
+        self.createAccountUsernameTextField.becomeFirstResponder()
     }
 
     
@@ -388,7 +377,10 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         // Select Camera as the source
         imagePickerController.sourceType = .camera
-        imagePickerController.mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera)!
+        
+        // Adding this line allows video too
+        //imagePickerController.mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera)!
+        
         imagePickerController.allowsEditing = false
         self.present(imagePickerController, animated: true, completion: nil)
         
@@ -398,7 +390,10 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         // Select Photo Library as the source
         imagePickerController.sourceType = .photoLibrary
-        imagePickerController.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+
+        // Adding this line allows video too
+        //imagePickerController.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        
         imagePickerController.allowsEditing = false
         self.present(imagePickerController, animated: true, completion: nil)
         
