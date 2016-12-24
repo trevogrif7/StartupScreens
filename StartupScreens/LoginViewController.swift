@@ -33,6 +33,10 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var createAccountLabel: UILabel!
     @IBOutlet weak var createAccountSaveButton: UIButton!
 
+    let grayBorderColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1.0).cgColor
+    
+    let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+
     // Variables to control background animation
     //var backgroundColorsArray = [UIColor]()
     //var colorIterator  = 0
@@ -85,14 +89,12 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         createAccountPasswordTextField.layer.borderWidth = 1.0
         createAccountReEnterPasswordTextField.layer.borderWidth = 1.0
         
-        let borderColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1.0).cgColor
-
-        createAccountUsernameTextField.layer.borderColor = borderColor
-        createAccountEmailTextField.layer.borderColor = borderColor
-        createAccountFirstNameTextField.layer.borderColor = borderColor
-        createAccountLastNameTextField.layer.borderColor = borderColor
-        createAccountPasswordTextField.layer.borderColor = borderColor
-        createAccountReEnterPasswordTextField.layer.borderColor = borderColor
+        createAccountUsernameTextField.layer.borderColor = grayBorderColor
+        createAccountEmailTextField.layer.borderColor = grayBorderColor
+        createAccountFirstNameTextField.layer.borderColor = grayBorderColor
+        createAccountLastNameTextField.layer.borderColor = grayBorderColor
+        createAccountPasswordTextField.layer.borderColor = grayBorderColor
+        createAccountReEnterPasswordTextField.layer.borderColor = grayBorderColor
         
         // Format label and buttons
         createAccountLabel.font = UIFont(name: "GillSans", size: 18)
@@ -101,10 +103,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
         
         // Make profile image round
-        //self.createAccountProfileImage.layer.borderWidth = 1
         self.createAccountProfileImage.layer.masksToBounds = true
-        //self.createAccountProfileImage.layer.borderColor = UIColor.black.cgColor
-        //self.createAccountProfileImage.clipsToBounds = true
         self.createAccountProfileImage.layer.cornerRadius = self.createAccountProfileImage.frame.height/2
         
         // Add shadow to top view
@@ -123,6 +122,20 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         //animateBackgroundColor()
         
         self.view.backgroundColor = UIColor(red: 00/255, green: 112/255, blue: 190/255, alpha: 1.0)
+        
+        // Firebase functionality
+        
+        // Check to see if this is a known user
+        let user = FIRAuth.auth()?.currentUser
+        
+        if user != nil {
+            self.emailTextField.text = user?.email
+            
+            // Pull in all data needed from Firebase
+        }
+        else {
+            
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -233,7 +246,17 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBAction func createAccountCancelButtonPressed(_ sender: UIButton) {
 
-        // Disable buttons on view controller
+        // Clear the fields on the create account popup
+        self.createAccountUsernameTextField.text = ""
+        self.createAccountEmailTextField.text = ""
+        self.createAccountFirstNameTextField.text = ""
+        self.createAccountLastNameTextField.text = ""
+        self.createAccountPasswordTextField.text = ""
+        self.createAccountReEnterPasswordTextField.text = ""
+        self.createAccountProfileImage.image = UIImage(named: "defaultProfilePicture")
+        self.createAccountProfileImage.contentMode = .scaleAspectFit
+
+        // Enable buttons on view controller
         self.emailTextField.isEnabled = true
         self.passwordTextField.isEnabled = true
         self.signInButton.isEnabled = true
@@ -257,57 +280,157 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }) { (Bool) in
             self.createAccountView.removeFromSuperview()
         }
-        
-        // TODO: Set all fields back to their default blank states
     }
     
     @IBAction func createAccountSaveButtonPressed(_ sender: UIButton) {
         
-        // Check to see that passwords match
-        if createAccountPasswordTextField.text == createAccountReEnterPasswordTextField.text {
-            FIRAuth.auth()?.createUser(withEmail: createAccountEmailTextField.text!, password: createAccountPasswordTextField.text!
-                , completion: { (user, error) in
-                    
-                    if error != nil {
-                        // Seee GOCR app for potential errors and remedies
-                        
-                        print("ERROR: Account was not created")
-                    }
-                    else {
-                        // Account created
-                        
-                        // Stop the animation in the background
-                        //self.view.layer.removeAllAnimations()
-                        
-                        // Sign the user in
-                        print("Account was created")
-                        //self.signIn()
-                    }
-            })
+        var usernameBlank = false
+        var firstNameBlank = false
+        var lastNameBlank = false
+        var emailBlank = false
+        var passwordBlank = false
+        var reEnterPasswordBlank = false
+        
+        createAccountUsernameTextField.layer.borderColor = grayBorderColor
+        createAccountEmailTextField.layer.borderColor = grayBorderColor
+        createAccountFirstNameTextField.layer.borderColor = grayBorderColor
+        createAccountLastNameTextField.layer.borderColor = grayBorderColor
+        createAccountPasswordTextField.layer.borderColor = grayBorderColor
+        createAccountReEnterPasswordTextField.layer.borderColor = grayBorderColor
+
+        // Make sure all fields are filled out and mark those that aren't by changing border color to red
+        if createAccountUsernameTextField.text == "" {
+            usernameBlank = true
+            createAccountUsernameTextField.layer.borderColor = UIColor.red.cgColor
+        }
+        
+        if createAccountFirstNameTextField.text == "" {
+            
+            firstNameBlank = true
+            createAccountFirstNameTextField.layer.borderColor = UIColor.red.cgColor
+        }
+        
+        if createAccountLastNameTextField.text == "" {
+            
+            lastNameBlank = true
+            createAccountLastNameTextField.layer.borderColor = UIColor.red.cgColor
+        }
+        
+        if createAccountEmailTextField.text == "" {
+            
+            emailBlank = true
+            createAccountEmailTextField.layer.borderColor = UIColor.red.cgColor
+        }
+        
+        if createAccountPasswordTextField.text == "" {
+            
+            passwordBlank = true
+            createAccountPasswordTextField.layer.borderColor = UIColor.red.cgColor
+        }
+        
+        if createAccountReEnterPasswordTextField.text == "" {
+            
+            reEnterPasswordBlank = true
+            createAccountReEnterPasswordTextField.layer.borderColor = UIColor.red.cgColor
+        }
+        
+        // Alert user that not all fields have been filled out
+        if usernameBlank == true   ||
+            firstNameBlank == true ||
+            lastNameBlank == true  ||
+            emailBlank == true     ||
+            passwordBlank == true  ||
+            reEnterPasswordBlank == true {
+            
+            let fieldLeftBlankAlert = UIAlertController(title: "Alert", message: "Please fill in all fields", preferredStyle: .alert)
+
+            fieldLeftBlankAlert.addAction(alertAction)
+            
+            self.present(fieldLeftBlankAlert, animated: true, completion: nil)
+            
         }
         else {
-            print("Passwords don't match")
-        }
+        
+            // Check to see that passwords match
+            if createAccountPasswordTextField.text == createAccountReEnterPasswordTextField.text {
+                
+                // Create account
+                FIRAuth.auth()?.createUser(withEmail: createAccountEmailTextField.text!, password: createAccountPasswordTextField.text!
+                    , completion: { (user, error) in
+
+                        // If acount creation didn't work show error as alert
+                        if error != nil {
+                            
+                            let errorAlert = UIAlertController(title: "Try Again", message: error?.localizedDescription, preferredStyle: .alert)
+                            
+                            errorAlert.addAction(self.alertAction)
+                            
+                            self.present(errorAlert, animated: true, completion: nil)
+                        }
+                        else {
+                            // Account created
+                            print("Account was created")
+                            
+                            // Update email and password fields
+                            self.emailTextField.text = self.createAccountEmailTextField.text
+                            self.passwordTextField.text = self.createAccountPasswordTextField.text
+                            
+                            // Sign the user in
+                            self.signIn()
+                        }
+                })
+            }
+            else {
+                // Passwords don't match, show alert
+                let passwordMisMatchAlert = UIAlertController(title: "Alert", message: "Passwords must match", preferredStyle: .alert)
+                
+                passwordMisMatchAlert.addAction(alertAction)
+                
+                self.present(passwordMisMatchAlert, animated: true, completion: nil)
+            } // Password matching check
+        } // Blank field check
         
     }
     
     func signIn() {
         
+        // Sign in to account
         FIRAuth.auth()?.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!
             , completion: { (user, error) in
                 
+                // If sign in didn't work, show error as alert
                 if error != nil {
-                    print("Sign in didn't work")
-                    // Seee GOCR app for potential errors and remedies
+                    let errorAlert = UIAlertController(title: "Try Again", message: error?.localizedDescription, preferredStyle: .alert)
+                    
+                    errorAlert.addAction(self.alertAction)
+                    
+                    self.present(errorAlert, animated: true, completion: nil)
                 }
                 else {
                     print("You were signed in correctly")
+                    
+                    // TODO: Segue to next page of app
                 }
         })
     }
+    
+    func signOut () {
+        // Sign out of account
+        try! FIRAuth.auth()?.signOut()
+    }
 
     @IBAction func signInButtonPressed(_ sender: UIButton) {
-        self.signIn()
+        if emailTextField.text == "" || passwordTextField.text == "" {
+            let fieldLeftBlankAlert = UIAlertController(title: "Alert", message: "Please enter your email and password", preferredStyle: .alert)
+            
+            fieldLeftBlankAlert.addAction(self.alertAction)
+            
+            self.present(fieldLeftBlankAlert, animated: true, completion: nil)
+
+        }
+        else {
+            self.signIn()
+        }
     }
     
     @IBAction func profileImageTapped(_ sender: UITapGestureRecognizer) {

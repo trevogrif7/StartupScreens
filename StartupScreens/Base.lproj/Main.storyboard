@@ -287,9 +287,10 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                 </textField>
-                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="rJN-NS-s7F">
+                                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultProfilePicture" translatesAutoresizingMaskIntoConstraints="NO" id="rJN-NS-s7F">
                                     <rect key="frame" x="28" y="-32" width="55" height="55"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <gestureRecognizers/>
                                     <connections>
                                         <outletCollection property="gestureRecognizers" destination="C86-Ui-vKH" appends="YES" id="K1a-rc-sVn"/>
@@ -312,5 +313,6 @@
     </scenes>
     <resources>
         <image name="background1" width="1200" height="1600"/>
+        <image name="defaultProfilePicture" width="511" height="849"/>
     </resources>
 </document>
