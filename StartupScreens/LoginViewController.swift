@@ -37,9 +37,6 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
 
-    // Variables to control background animation
-    //var backgroundColorsArray = [UIColor]()
-    //var colorIterator  = 0
     
     // Used to get images
     let imagePickerController = UIImagePickerController()
@@ -113,14 +110,6 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         self.createAccountTopView.layer.shadowRadius = 10
         self.createAccountTopView.layer.shadowOffset = CGSize(width: -5.0, height: 3.0)
         
-        // Create background color array for color changing animation
-        //self.backgroundColorsArray = [
-        //    UIColor(red: 00/255, green: 112/255, blue: 190/255, alpha: 1.0),
-        //    UIColor(red: 00/255, green: 75/255, blue: 100/255, alpha: 1.0)]
-        
-        // Constantly shift background color
-        //animateBackgroundColor()
-        
         self.view.backgroundColor = UIColor(red: 00/255, green: 112/255, blue: 190/255, alpha: 1.0)
         
         // Firebase functionality
@@ -186,26 +175,6 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         // Dispose of any resources that can be recreated.
     }
     
-    
-//    func animateBackgroundColor() {
-//        
-//        // Update iterator
-//        if colorIterator == backgroundColorsArray.count-1 {
-//            colorIterator = 0
-//        }
-//        else {
-//            colorIterator += 1
-//        }
-//        
-//        // Animate background color transition. Recursivley call the
-//        // function infinitely.
-//        UIView.animate(withDuration: 4.0, delay: 0, options: [.allowUserInteraction], animations: {
-//            self.view.backgroundColor = self.backgroundColorsArray[self.colorIterator]
-//        }, completion: { (complete)  in
-//            self.animateBackgroundColor()
-//        })
-//    }
-    
     @IBAction func createAccountButtonPressed(_ sender: Any) {
         
         // Disable buttons on view controller
@@ -217,9 +186,6 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         // Make cursor move to username text field
         self.createAccountUsernameTextField.becomeFirstResponder()
-        
-        // Stop the animation in the background
-        //self.view.layer.removeAllAnimations()
         
         // Add the create account view and set its position
         self.view.addSubview(createAccountView)
@@ -266,9 +232,6 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         // Make cursor move to username text field
         self.emailTextField.becomeFirstResponder()
         
-        // Restart the animation in the background
-        //self.animateBackgroundColor()
-        
         // Animate dismissal of create account view
         UIView.animate(withDuration: 0.3, animations: {
             self.createAccountView.alpha = 0
@@ -291,12 +254,12 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         var passwordBlank = false
         var reEnterPasswordBlank = false
         
-        createAccountUsernameTextField.layer.borderColor = grayBorderColor
-        createAccountEmailTextField.layer.borderColor = grayBorderColor
-        createAccountFirstNameTextField.layer.borderColor = grayBorderColor
-        createAccountLastNameTextField.layer.borderColor = grayBorderColor
-        createAccountPasswordTextField.layer.borderColor = grayBorderColor
-        createAccountReEnterPasswordTextField.layer.borderColor = grayBorderColor
+        self.createAccountUsernameTextField.layer.borderColor = grayBorderColor
+        self.createAccountEmailTextField.layer.borderColor = grayBorderColor
+        self.createAccountFirstNameTextField.layer.borderColor = grayBorderColor
+        self.createAccountLastNameTextField.layer.borderColor = grayBorderColor
+        self.createAccountPasswordTextField.layer.borderColor = grayBorderColor
+        self.createAccountReEnterPasswordTextField.layer.borderColor = grayBorderColor
 
         // Make sure all fields are filled out and mark those that aren't by changing border color to red
         if createAccountUsernameTextField.text == "" {
@@ -409,16 +372,12 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 else {
                     print("You were signed in correctly")
                     
-                    // TODO: Segue to next page of app
+                    // Segue to next page of app
+                    self.performSegue(withIdentifier: "signedInSegue", sender: self)
                 }
         })
     }
     
-    func signOut () {
-        // Sign out of account
-        try! FIRAuth.auth()?.signOut()
-    }
-
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         if emailTextField.text == "" || passwordTextField.text == "" {
             let fieldLeftBlankAlert = UIAlertController(title: "Alert", message: "Please enter your email and password", preferredStyle: .alert)

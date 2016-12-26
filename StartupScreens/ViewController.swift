@@ -76,7 +76,6 @@ class ViewController: UIViewController {
         currentImage.frame = self.view.frame // match the size of the view
         nextImage.frame = self.view.frame
         animateBackgroundImage()
-
     }
     
     func animateBackgroundImage () {

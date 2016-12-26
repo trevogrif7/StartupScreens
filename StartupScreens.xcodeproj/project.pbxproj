@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		083CD42F1E0F185800784192 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083CD42E1E0F185800784192 /* HelperFunctions.swift */; };
+		083CD4331E0F35B900784192 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083CD4321E0F35B900784192 /* SWRevealViewController.m */; };
+		083CD4351E0FA1E100784192 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083CD4341E0FA1E100784192 /* MainViewController.swift */; };
 		08814E501E05D8D9004D9425 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08814E4F1E05D8D9004D9425 /* AppDelegate.swift */; };
 		08814E521E05D8D9004D9425 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08814E511E05D8D9004D9425 /* ViewController.swift */; };
 		08814E551E05D8D9004D9425 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08814E531E05D8D9004D9425 /* Main.storyboard */; };
@@ -16,10 +19,7 @@
 		08814E681E05D8D9004D9425 /* StartupScreensTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08814E671E05D8D9004D9425 /* StartupScreensTests.swift */; };
 		08814E731E05D8D9004D9425 /* StartupScreensUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08814E721E05D8D9004D9425 /* StartupScreensUITests.swift */; };
 		08814E811E06596B004D9425 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08814E801E06596B004D9425 /* LoginViewController.swift */; };
-		08814E831E0694AA004D9425 /* mySegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08814E821E0694AA004D9425 /* mySegue.swift */; };
 		08814E851E07B49A004D9425 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08814E841E07B49A004D9425 /* GoogleService-Info.plist */; };
-		08814E871E07BCF9004D9425 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08814E861E07BCF9004D9425 /* CreateAccountViewController.swift */; };
-		08814E8B1E0BB278004D9425 /* ZoomInSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08814E8A1E0BB278004D9425 /* ZoomInSegue.swift */; };
 		2B938740B3CE5EDFE54D863B /* Pods_StartupScreensUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3983CE330253E250E690C227 /* Pods_StartupScreensUITests.framework */; };
 		856A218D38608356E51A1DF7 /* Pods_StartupScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFA610358F4A38CC3B69AAE /* Pods_StartupScreensTests.framework */; };
 		AB87C19D4A27A3D5CC936E57 /* Pods_StartupScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20B91390B65075843022C5A /* Pods_StartupScreens.framework */; };
@@ -44,6 +44,11 @@
 
 /* Begin PBXFileReference section */
 		0370129CF6442DFB36330E9E /* Pods-StartupScreensUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartupScreensUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StartupScreensUITests/Pods-StartupScreensUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		083CD42E1E0F185800784192 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		083CD4301E0F35B900784192 /* StartupScreens-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StartupScreens-Bridging-Header.h"; sourceTree = "<group>"; };
+		083CD4311E0F35B900784192 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		083CD4321E0F35B900784192 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		083CD4341E0FA1E100784192 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		08814E4C1E05D8D9004D9425 /* StartupScreens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StartupScreens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08814E4F1E05D8D9004D9425 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08814E511E05D8D9004D9425 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,10 +64,7 @@
 		08814E721E05D8D9004D9425 /* StartupScreensUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupScreensUITests.swift; sourceTree = "<group>"; };
 		08814E741E05D8D9004D9425 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08814E801E06596B004D9425 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		08814E821E0694AA004D9425 /* mySegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mySegue.swift; sourceTree = "<group>"; };
 		08814E841E07B49A004D9425 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		08814E861E07BCF9004D9425 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
-		08814E8A1E0BB278004D9425 /* ZoomInSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomInSegue.swift; sourceTree = "<group>"; };
 		144DEC7450602B4ED36C8BFB /* Pods-StartupScreens.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartupScreens.release.xcconfig"; path = "Pods/Target Support Files/Pods-StartupScreens/Pods-StartupScreens.release.xcconfig"; sourceTree = "<group>"; };
 		244EEEE90F1780EEBEC4B103 /* Pods-StartupScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartupScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StartupScreensTests/Pods-StartupScreensTests.release.xcconfig"; sourceTree = "<group>"; };
 		3983CE330253E250E690C227 /* Pods_StartupScreensUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StartupScreensUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,18 +128,20 @@
 		08814E4E1E05D8D9004D9425 /* StartupScreens */ = {
 			isa = PBXGroup;
 			children = (
+				083CD4311E0F35B900784192 /* SWRevealViewController.h */,
+				083CD4321E0F35B900784192 /* SWRevealViewController.m */,
 				08814E4F1E05D8D9004D9425 /* AppDelegate.swift */,
 				08814E511E05D8D9004D9425 /* ViewController.swift */,
+				083CD42E1E0F185800784192 /* HelperFunctions.swift */,
 				08814E801E06596B004D9425 /* LoginViewController.swift */,
 				08814E531E05D8D9004D9425 /* Main.storyboard */,
-				08814E861E07BCF9004D9425 /* CreateAccountViewController.swift */,
-				08814E821E0694AA004D9425 /* mySegue.swift */,
-				08814E8A1E0BB278004D9425 /* ZoomInSegue.swift */,
+				083CD4341E0FA1E100784192 /* MainViewController.swift */,
 				08814E591E05D8D9004D9425 /* Assets.xcassets */,
 				08814E5B1E05D8D9004D9425 /* LaunchScreen.storyboard */,
 				08814E5E1E05D8D9004D9425 /* Info.plist */,
 				08814E841E07B49A004D9425 /* GoogleService-Info.plist */,
 				08814E561E05D8D9004D9425 /* StartupScreens.xcdatamodeld */,
+				083CD4301E0F35B900784192 /* StartupScreens-Bridging-Header.h */,
 			);
 			path = StartupScreens;
 			sourceTree = "<group>";
@@ -261,6 +265,7 @@
 					08814E4B1E05D8D8004D9425 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = MQLCG95E87;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					08814E621E05D8D9004D9425 = {
@@ -468,13 +473,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08814E871E07BCF9004D9425 /* CreateAccountViewController.swift in Sources */,
-				08814E8B1E0BB278004D9425 /* ZoomInSegue.swift in Sources */,
+				083CD4351E0FA1E100784192 /* MainViewController.swift in Sources */,
 				08814E811E06596B004D9425 /* LoginViewController.swift in Sources */,
 				08814E521E05D8D9004D9425 /* ViewController.swift in Sources */,
 				08814E501E05D8D9004D9425 /* AppDelegate.swift in Sources */,
-				08814E831E0694AA004D9425 /* mySegue.swift in Sources */,
 				08814E581E05D8D9004D9425 /* StartupScreens.xcdatamodeld in Sources */,
+				083CD42F1E0F185800784192 /* HelperFunctions.swift in Sources */,
+				083CD4331E0F35B900784192 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,12 +630,15 @@
 			baseConfigurationReference = AE1F9A65E71256C1547E4E45 /* Pods-StartupScreens.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = MQLCG95E87;
 				INFOPLIST_FILE = StartupScreens/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = self.edu.trevoregriffin.StartupScreens;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "StartupScreens/StartupScreens-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -640,12 +648,14 @@
 			baseConfigurationReference = 144DEC7450602B4ED36C8BFB /* Pods-StartupScreens.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = MQLCG95E87;
 				INFOPLIST_FILE = StartupScreens/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = self.edu.trevoregriffin.StartupScreens;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "StartupScreens/StartupScreens-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

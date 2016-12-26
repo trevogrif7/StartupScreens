@@ -58,14 +58,14 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="⊗" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VpD-iP-ua8">
-                                                        <rect key="frame" x="313" y="199" width="16" height="20"/>
+                                                        <rect key="frame" x="314" y="160" width="16" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Join the Fun!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5P-ZY-wUu">
-                                                        <rect key="frame" x="8" y="267" width="359" height="36"/>
+                                                        <rect key="frame" x="8" y="277" width="359" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -81,8 +81,8 @@
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Grifx" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCy-wy-VBa">
-                                <rect key="frame" x="8" y="174" width="359" height="95"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Snap!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCy-wy-VBa">
+                                <rect key="frame" x="8" y="131" width="359" height="138"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="115"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -191,6 +191,7 @@
                         <outlet property="forgotPasswordButton" destination="A5o-00-wzs" id="fdz-ft-wxE"/>
                         <outlet property="passwordTextField" destination="QvI-P6-apc" id="2AV-SF-0Xn"/>
                         <outlet property="signInButton" destination="PkJ-lP-ikG" id="mxK-aE-5kb"/>
+                        <segue destination="62s-oT-hKL" kind="show" identifier="signedInSegue" id="yPY-eW-XWh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xWc-wV-pu3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -308,11 +309,115 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3732" y="135.38230884557723"/>
+            <point key="canvasLocation" x="3745" y="136"/>
+        </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="bQX-9r-uef">
+            <objects>
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="62s-oT-hKL" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8Ud-3t-Kka"/>
+                        <viewControllerLayoutGuide type="bottom" id="GlV-Wi-Jcb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="f7p-w2-Krs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="2kY-Xq-bZW" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="b6Y-lJ-LcP"/>
+                        <segue destination="2eP-rZ-1nt" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="kYu-KI-nYw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BQb-QW-3He" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4580" y="-673"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="9xf-Qj-hLP">
+            <objects>
+                <tableViewController id="2eP-rZ-1nt" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="pJx-f6-ZIL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Jkm-Uq-ZpJ">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jkm-Uq-ZpJ" id="VFb-gM-HiC">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2eP-rZ-1nt" id="FsO-gP-cLL"/>
+                            <outlet property="delegate" destination="2eP-rZ-1nt" id="X1P-PT-PKY"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="75s-n8-TMe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5519" y="-673"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="ZB8-XI-Jft">
+            <objects>
+                <viewController storyboardIdentifier="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="L57-vZ-TFk" customClass="MainViewController" customModule="StartupScreens" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PGO-Iy-pce"/>
+                        <viewControllerLayoutGuide type="bottom" id="bN5-s1-VDz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rVF-2A-VLx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background5" translatesAutoresizingMaskIntoConstraints="NO" id="tac-5m-5UN">
+                                <rect key="frame" x="31" y="229" width="313" height="208"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="opU-Cb-7pL">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="PvU-Rn-g9W"/>
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="Fkz-aR-9aJ">
+                            <connections>
+                                <action selector="logoutButtonPressed:" destination="L57-vZ-TFk" id="5SE-Vq-VCy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="menuButton" destination="PvU-Rn-g9W" id="fJP-Lf-657"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DeR-QB-4Dk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5519.1999999999998" y="136.28185907046478"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ilf-Nu-WEb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2kY-Xq-bZW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dbj-SN-9aI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="L57-vZ-TFk" kind="relationship" relationship="rootViewController" id="Xnw-hb-TWW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IzX-JL-MF5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4580" y="136.28185907046478"/>
         </scene>
     </scenes>
     <resources>
         <image name="background1" width="1200" height="1600"/>
+        <image name="background5" width="4032" height="3024"/>
         <image name="defaultProfilePicture" width="511" height="849"/>
     </resources>
 </document>
