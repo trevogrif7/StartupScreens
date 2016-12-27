@@ -1,0 +1,6 @@
+framework module Pods_StartupScreensTests {
+  umbrella header "Pods-StartupScreensTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

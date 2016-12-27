@@ -12,12 +12,15 @@ import Firebase
 class MainViewController: UIViewController {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        menuButton.target = revealViewController()
-        
-        menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+        if revealViewController() != nil {
+            self.menuButton.target = revealViewController()
+            self.menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            self.view.addGestureRecognizer(revealViewController().panGestureRecognizer())
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,5 +34,8 @@ class MainViewController: UIViewController {
     func signOut () {
         // Sign out of account
         try! FIRAuth.auth()?.signOut()
+        
+        self.performSegue(withIdentifier: "logoutSegue", sender: self)
+     
     }
 }

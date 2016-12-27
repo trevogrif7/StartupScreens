@@ -31,6 +31,7 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationItem.hidesBackButton = true
         
         // Initialize attributes
         self.backgroundImage.alpha = 0

@@ -20,6 +20,10 @@
 		08814E731E05D8D9004D9425 /* StartupScreensUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08814E721E05D8D9004D9425 /* StartupScreensUITests.swift */; };
 		08814E811E06596B004D9425 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08814E801E06596B004D9425 /* LoginViewController.swift */; };
 		08814E851E07B49A004D9425 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08814E841E07B49A004D9425 /* GoogleService-Info.plist */; };
+		08E06BD81E12452F0046DDA2 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E06BD71E12452F0046DDA2 /* MenuTableViewController.swift */; };
+		08E06BDA1E1245460046DDA2 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E06BD91E1245460046DDA2 /* MenuTableViewCell.swift */; };
+		08E06BDC1E124FC90046DDA2 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E06BDB1E124FC90046DDA2 /* MessagesViewController.swift */; };
+		08E06BDE1E1250040046DDA2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E06BDD1E1250040046DDA2 /* SettingsViewController.swift */; };
 		2B938740B3CE5EDFE54D863B /* Pods_StartupScreensUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3983CE330253E250E690C227 /* Pods_StartupScreensUITests.framework */; };
 		856A218D38608356E51A1DF7 /* Pods_StartupScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFA610358F4A38CC3B69AAE /* Pods_StartupScreensTests.framework */; };
 		AB87C19D4A27A3D5CC936E57 /* Pods_StartupScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20B91390B65075843022C5A /* Pods_StartupScreens.framework */; };
@@ -65,6 +69,10 @@
 		08814E741E05D8D9004D9425 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08814E801E06596B004D9425 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		08814E841E07B49A004D9425 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		08E06BD71E12452F0046DDA2 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		08E06BD91E1245460046DDA2 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		08E06BDB1E124FC90046DDA2 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		08E06BDD1E1250040046DDA2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		144DEC7450602B4ED36C8BFB /* Pods-StartupScreens.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartupScreens.release.xcconfig"; path = "Pods/Target Support Files/Pods-StartupScreens/Pods-StartupScreens.release.xcconfig"; sourceTree = "<group>"; };
 		244EEEE90F1780EEBEC4B103 /* Pods-StartupScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartupScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StartupScreensTests/Pods-StartupScreensTests.release.xcconfig"; sourceTree = "<group>"; };
 		3983CE330253E250E690C227 /* Pods_StartupScreensUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StartupScreensUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,10 +140,14 @@
 				083CD4321E0F35B900784192 /* SWRevealViewController.m */,
 				08814E4F1E05D8D9004D9425 /* AppDelegate.swift */,
 				08814E511E05D8D9004D9425 /* ViewController.swift */,
+				08E06BD71E12452F0046DDA2 /* MenuTableViewController.swift */,
+				08E06BDB1E124FC90046DDA2 /* MessagesViewController.swift */,
+				08E06BD91E1245460046DDA2 /* MenuTableViewCell.swift */,
 				083CD42E1E0F185800784192 /* HelperFunctions.swift */,
 				08814E801E06596B004D9425 /* LoginViewController.swift */,
-				08814E531E05D8D9004D9425 /* Main.storyboard */,
 				083CD4341E0FA1E100784192 /* MainViewController.swift */,
+				08E06BDD1E1250040046DDA2 /* SettingsViewController.swift */,
+				08814E531E05D8D9004D9425 /* Main.storyboard */,
 				08814E591E05D8D9004D9425 /* Assets.xcassets */,
 				08814E5B1E05D8D9004D9425 /* LaunchScreen.storyboard */,
 				08814E5E1E05D8D9004D9425 /* Info.plist */,
@@ -473,10 +485,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08E06BDC1E124FC90046DDA2 /* MessagesViewController.swift in Sources */,
 				083CD4351E0FA1E100784192 /* MainViewController.swift in Sources */,
+				08E06BDE1E1250040046DDA2 /* SettingsViewController.swift in Sources */,
 				08814E811E06596B004D9425 /* LoginViewController.swift in Sources */,
 				08814E521E05D8D9004D9425 /* ViewController.swift in Sources */,
 				08814E501E05D8D9004D9425 /* AppDelegate.swift in Sources */,
+				08E06BD81E12452F0046DDA2 /* MenuTableViewController.swift in Sources */,
+				08E06BDA1E1245460046DDA2 /* MenuTableViewCell.swift in Sources */,
 				08814E581E05D8D9004D9425 /* StartupScreens.xcdatamodeld in Sources */,
 				083CD42F1E0F185800784192 /* HelperFunctions.swift in Sources */,
 				083CD4331E0F35B900784192 /* SWRevealViewController.m in Sources */,
