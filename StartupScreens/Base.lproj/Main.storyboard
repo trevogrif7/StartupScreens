@@ -350,14 +350,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fZh-qt-bea">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="fZh-qt-bea">
                                             <rect key="frame" x="9" y="4" width="32" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="32" id="FOf-Sy-ZTX"/>
                                                 <constraint firstAttribute="width" constant="32" id="z7S-Pz-8vn"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQJ-ZY-Ues">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQJ-ZY-Ues">
                                             <rect key="frame" x="49" y="11" width="313" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="6RD-QT-tG5"/>
@@ -404,7 +404,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background5" translatesAutoresizingMaskIntoConstraints="NO" id="tac-5m-5UN">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="tac-5m-5UN">
                                 <rect key="frame" x="31" y="229" width="313" height="208"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -431,7 +431,7 @@
         <!--Messages View Controller-->
         <scene sceneID="2pW-5l-eqe">
             <objects>
-                <viewController id="tY3-4e-CKd" customClass="MessagesViewController" customModule="StartupScreens" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessagesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tY3-4e-CKd" customClass="MessagesViewController" customModule="StartupScreens" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fsl-9k-nYU"/>
                         <viewControllerLayoutGuide type="bottom" id="lBE-Hx-xtl"/>
@@ -439,6 +439,12 @@
                     <view key="view" contentMode="scaleToFill" id="roU-Aq-9bX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background2" translatesAutoresizingMaskIntoConstraints="NO" id="R7f-1S-Qzl">
+                                <rect key="frame" x="67" y="269" width="240" height="176"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="64O-sl-cnM">
@@ -450,12 +456,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PTA-eH-4wE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7786" y="-673"/>
+            <point key="canvasLocation" x="7446" y="-673"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="CDH-eo-4JW">
             <objects>
-                <viewController id="nPZ-Xd-HxX" customClass="SettingsViewController" customModule="StartupScreens" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nPZ-Xd-HxX" customClass="SettingsViewController" customModule="StartupScreens" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JMa-1O-rVW"/>
                         <viewControllerLayoutGuide type="bottom" id="2AQ-q3-j7m"/>
@@ -463,6 +469,12 @@
                     <view key="view" contentMode="scaleToFill" id="ohr-c5-Ooe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background3" translatesAutoresizingMaskIntoConstraints="NO" id="kny-i1-fXe">
+                                <rect key="frame" x="67" y="269" width="240" height="163"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="EMi-a8-ymE">
@@ -474,7 +486,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Igs-3z-h0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7785" y="137"/>
+            <point key="canvasLocation" x="7447" y="137"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ilf-Nu-WEb">
@@ -510,7 +522,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8y2-C4-mpO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6846" y="-673"/>
+            <point key="canvasLocation" x="6508" y="-673"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Crg-FW-xXu">
@@ -528,12 +540,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3RP-0p-yMp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6846" y="135"/>
+            <point key="canvasLocation" x="6508" y="135"/>
         </scene>
     </scenes>
     <resources>
         <image name="background1" width="1200" height="1600"/>
-        <image name="background5" width="4032" height="3024"/>
+        <image name="background2" width="4032" height="3024"/>
+        <image name="background3" width="4520" height="3744"/>
         <image name="defaultProfilePicture" width="511" height="849"/>
     </resources>
 </document>
