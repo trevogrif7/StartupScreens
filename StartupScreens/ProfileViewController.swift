@@ -1,14 +1,14 @@
 //
-//  MessagesViewController.swift
+//  ProfileViewController.swift
 //  StartupScreens
 //
-//  Created by Trevor Griffin on 12/27/16.
-//  Copyright © 2016 TREVOR E GRIFFIN. All rights reserved.
+//  Created by Trevor Griffin on 1/1/17.
+//  Copyright © 2017 TREVOR E GRIFFIN. All rights reserved.
 //
 
 import UIKit
 
-class MessagesViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
 

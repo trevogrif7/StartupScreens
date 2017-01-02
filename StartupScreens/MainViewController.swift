@@ -15,7 +15,14 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Remove back button (Doesn't seem to work on this viewcontroller)
+        //self.navigationItem.hidesBackButton = true
 
+
+        // Change size of slide out menu
+        self.revealViewController().rearViewRevealWidth = 175
+        
         if revealViewController() != nil {
             self.menuButton.target = revealViewController()
             self.menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -31,11 +38,13 @@ class MainViewController: UIViewController {
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         self.signOut()
     }
+
     func signOut () {
         // Sign out of account
         try! FIRAuth.auth()?.signOut()
         
-        self.performSegue(withIdentifier: "logoutSegue", sender: self)
+        // Where should we transition to once we log out?
+        //self.performSegue(withIdentifier: "logoutSegue", sender: self)
      
     }
 }

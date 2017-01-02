@@ -11,6 +11,8 @@ import Firebase
 
 class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var dividingLineView: UIView!
+
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
@@ -25,8 +27,6 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var createAccountReEnterPasswordTextField: UITextField!
     @IBOutlet weak var createAccountPasswordTextField: UITextField!
     @IBOutlet weak var createAccountEmailTextField: UITextField!
-    @IBOutlet weak var createAccountLastNameTextField: UITextField!
-    @IBOutlet weak var createAccountFirstNameTextField: UITextField!
     @IBOutlet weak var createAccountUsernameTextField: UITextField!
     @IBOutlet weak var createAccountProfileImage: UIImageView!
     @IBOutlet weak var createAccountCancelButton: UIButton!
@@ -47,6 +47,9 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Remove back button
+        self.navigationItem.hidesBackButton = true
         
         // Initialize Delegates
         imagePickerController.delegate = self
@@ -81,15 +84,11 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         // Format text fields
         createAccountUsernameTextField.layer.borderWidth = 1.0
         createAccountEmailTextField.layer.borderWidth = 1.0
-        createAccountFirstNameTextField.layer.borderWidth = 1.0
-        createAccountLastNameTextField.layer.borderWidth = 1.0
         createAccountPasswordTextField.layer.borderWidth = 1.0
         createAccountReEnterPasswordTextField.layer.borderWidth = 1.0
         
         createAccountUsernameTextField.layer.borderColor = grayBorderColor
         createAccountEmailTextField.layer.borderColor = grayBorderColor
-        createAccountFirstNameTextField.layer.borderColor = grayBorderColor
-        createAccountLastNameTextField.layer.borderColor = grayBorderColor
         createAccountPasswordTextField.layer.borderColor = grayBorderColor
         createAccountReEnterPasswordTextField.layer.borderColor = grayBorderColor
         
@@ -215,8 +214,6 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         // Clear the fields on the create account popup
         self.createAccountUsernameTextField.text = ""
         self.createAccountEmailTextField.text = ""
-        self.createAccountFirstNameTextField.text = ""
-        self.createAccountLastNameTextField.text = ""
         self.createAccountPasswordTextField.text = ""
         self.createAccountReEnterPasswordTextField.text = ""
         self.createAccountProfileImage.image = UIImage(named: "defaultProfilePicture")
@@ -248,16 +245,12 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBAction func createAccountSaveButtonPressed(_ sender: UIButton) {
         
         var usernameBlank = false
-        var firstNameBlank = false
-        var lastNameBlank = false
         var emailBlank = false
         var passwordBlank = false
         var reEnterPasswordBlank = false
         
         self.createAccountUsernameTextField.layer.borderColor = grayBorderColor
         self.createAccountEmailTextField.layer.borderColor = grayBorderColor
-        self.createAccountFirstNameTextField.layer.borderColor = grayBorderColor
-        self.createAccountLastNameTextField.layer.borderColor = grayBorderColor
         self.createAccountPasswordTextField.layer.borderColor = grayBorderColor
         self.createAccountReEnterPasswordTextField.layer.borderColor = grayBorderColor
 
@@ -265,18 +258,6 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         if createAccountUsernameTextField.text == "" {
             usernameBlank = true
             createAccountUsernameTextField.layer.borderColor = UIColor.red.cgColor
-        }
-        
-        if createAccountFirstNameTextField.text == "" {
-            
-            firstNameBlank = true
-            createAccountFirstNameTextField.layer.borderColor = UIColor.red.cgColor
-        }
-        
-        if createAccountLastNameTextField.text == "" {
-            
-            lastNameBlank = true
-            createAccountLastNameTextField.layer.borderColor = UIColor.red.cgColor
         }
         
         if createAccountEmailTextField.text == "" {
@@ -299,8 +280,6 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         // Alert user that not all fields have been filled out
         if usernameBlank == true   ||
-            firstNameBlank == true ||
-            lastNameBlank == true  ||
             emailBlank == true     ||
             passwordBlank == true  ||
             reEnterPasswordBlank == true {

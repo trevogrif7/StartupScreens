@@ -15,6 +15,9 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Change size of slide out menu
+        self.revealViewController().rearViewRevealWidth = 175
+        
         if revealViewController() != nil {
             self.menuButton.target = revealViewController()
             self.menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
