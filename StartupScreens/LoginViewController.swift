@@ -20,6 +20,12 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var createAccountButton: UIButton!
     @IBOutlet weak var dimBackgroundView: UIView!
     
+    // Alternate Login method buttons
+    @IBOutlet weak var googleSignInButton: UIButton!
+    @IBOutlet weak var facebookSignInButton: UIButton!
+    @IBOutlet weak var twitterSignInButton: UIButton!
+    
+    
     // Create Account View's IBoutlets
     @IBOutlet var createAccountView: UIView!
     @IBOutlet weak var createAccountBackgroundView: UIView!
@@ -328,6 +334,18 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
+    @IBAction func googleSignInButtonPressed(_ sender: Any) {
+        print("login with google button was pressed")
+    }
+    
+    @IBAction func facebookSignInButtonPressed(_ sender: Any) {
+        print("login with facebook button was pressed")
+    }
+    
+    @IBAction func twitterSignInButtonPressed(_ sender: Any) {
+        print("login with twitter button was pressed")
+    }
+    
     @IBAction func profileImageTapped(_ sender: UITapGestureRecognizer) {
 
         // If we have access to the camera but not the photo library
@@ -416,5 +434,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         self.present(imagePickerController, animated: true, completion: nil)
         
     }
+    
+    
 
 }

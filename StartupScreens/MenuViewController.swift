@@ -24,8 +24,8 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         profileImageView.layer.borderColor = UIColor.black.cgColor
         profileImageView.layer.cornerRadius = self.profileImageView.frame.height/2
         
-        menuItemNameArray = ["Home", "Messages", "Profile", "Settings"]
-        menuIconArray = [UIImage(named: "background1")!, UIImage(named: "background2")!, UIImage(named: "background3")!, UIImage(named: "background4")!]
+        menuItemNameArray = ["Home", "Messages", "Profile", "Contacts", "Settings"]
+        menuIconArray = [UIImage(named: "background1")!, UIImage(named: "background2")!, UIImage(named: "background3")!, UIImage(named: "background4")!, UIImage(named: "background5")!]
 
     }
 
@@ -85,7 +85,15 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             let newFrontVC = UINavigationController.init(rootViewController: destinationVC)
             
             revealVC.pushFrontViewController(newFrontVC, animated: true)
+      
+        } else if cell.menuItemName.text == "Contacts" {
+            let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let destinationVC = mainStoryBoard.instantiateViewController(withIdentifier: "ContactsViewController") as! ContactsViewController
+            let newFrontVC = UINavigationController.init(rootViewController: destinationVC)
+            
+            revealVC.pushFrontViewController(newFrontVC, animated: true)
         }
+
         
         else {
             print("ERROR: THIS SHOULD NEVER HAPPEN. SEE MENU VEIW CONTROLLER")

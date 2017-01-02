@@ -65,7 +65,7 @@ class FirebaseHelper {
                         print("You were signed in correctly")
                         
                         // Segue to next page of app
-                        targetVC.performSegue(withIdentifier: "signedInSegue", sender: self)
+                        targetVC.performSegue(withIdentifier: "signedInSegue", sender: nil)
                     }
             })
         //} else {
@@ -86,8 +86,28 @@ class FirebaseHelper {
         
     }
     
-    func signInAnonymously (target : UIViewController) {
-        
+    
+    // Do we need this functionality?
+    func signInAnonymously (/*emailAddressOrUsername: String,*/ targetVC : UIViewController) {
+        FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
+
+            if error != nil {
+                print("Error encountered when attempting to sign in anonymously")
+                let errorAlert = UIAlertController(title: "Oops!", message: error?.localizedDescription, preferredStyle: .alert)
+                
+                errorAlert.addAction(self.alertAction)
+                
+                targetVC.present(errorAlert, animated: true, completion: nil)
+            } else {
+                print("You were signed in anonymously")
+
+                // Save user name from emailAddressOrUsername
+                
+                
+                // Go Segue to appropriate view
+                targetVC.performSegue(withIdentifier: "signedInSegue", sender: nil)
+            }
+        })
     }
     
 }

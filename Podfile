@@ -9,6 +9,9 @@ target 'StartupScreens' do
 
 pod ‘Firebase/Core’
 pod ‘Firebase/Auth’
+pod ‘Firebase/Storage’
+pod ‘Firebase/Database’
+pod ‘JSQMessagesViewController’
 
   target 'StartupScreensTests' do
     inherit! :search_paths
