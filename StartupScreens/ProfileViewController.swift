@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         // Change size of slide out menu
-        self.revealViewController().rearViewRevealWidth = 175
+        self.revealViewController().rearViewRevealWidth = 200
         
         if revealViewController() != nil {
             self.menuButton.target = revealViewController()

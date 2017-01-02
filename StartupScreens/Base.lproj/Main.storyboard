@@ -64,7 +64,7 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Join the Fun!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5P-ZY-wUu">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Join the Conversation." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5P-ZY-wUu">
                                                         <rect key="frame" x="8" y="277" width="359" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -117,7 +117,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gP3-V8-hlK">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email / Username" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gP3-V8-hlK">
                                 <rect key="frame" x="16" y="107" width="343" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -224,7 +224,7 @@
                         <outlet property="createAccountView" destination="gUx-fD-P6E" id="JCK-R2-vpE"/>
                         <outlet property="dimBackgroundView" destination="tfZ-zm-I3C" id="SPN-xw-fwy"/>
                         <outlet property="dividingLineView" destination="tfZ-zm-I3C" id="iUB-hq-uph"/>
-                        <outlet property="emailTextField" destination="gP3-V8-hlK" id="k0t-Ks-upJ"/>
+                        <outlet property="emailOrUsernameTextField" destination="gP3-V8-hlK" id="XH1-lc-bxj"/>
                         <outlet property="forgotPasswordButton" destination="A5o-00-wzs" id="fdz-ft-wxE"/>
                         <outlet property="passwordTextField" destination="QvI-P6-apc" id="2AV-SF-0Xn"/>
                         <outlet property="signInButton" destination="PkJ-lP-ikG" id="mxK-aE-5kb"/>
@@ -403,11 +403,11 @@
                                 </connections>
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultProfilePicture" translatesAutoresizingMaskIntoConstraints="NO" id="J5g-Jj-r2h">
-                                <rect key="frame" x="35" y="58" width="100" height="100"/>
+                                <rect key="frame" x="52" y="58" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="USERNAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3b3-KJ-gB1">
-                                <rect key="frame" x="35" y="20" width="100" height="21"/>
+                                <rect key="frame" x="52" y="20" width="100" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>

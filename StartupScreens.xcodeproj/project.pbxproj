@@ -22,6 +22,7 @@
 		08814E851E07B49A004D9425 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08814E841E07B49A004D9425 /* GoogleService-Info.plist */; };
 		088FB8381E1A0D77006523A3 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088FB8371E1A0D77006523A3 /* MenuViewController.swift */; };
 		088FB83A1E1A160A006523A3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088FB8391E1A160A006523A3 /* ProfileViewController.swift */; };
+		088FB83E1E1A22FA006523A3 /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088FB83D1E1A22FA006523A3 /* FirebaseHelper.swift */; };
 		08E06BDA1E1245460046DDA2 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E06BD91E1245460046DDA2 /* MenuTableViewCell.swift */; };
 		08E06BDC1E124FC90046DDA2 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E06BDB1E124FC90046DDA2 /* MessagesViewController.swift */; };
 		08E06BDE1E1250040046DDA2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E06BDD1E1250040046DDA2 /* SettingsViewController.swift */; };
@@ -72,6 +73,7 @@
 		08814E841E07B49A004D9425 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		088FB8371E1A0D77006523A3 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		088FB8391E1A160A006523A3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		088FB83D1E1A22FA006523A3 /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		08E06BD91E1245460046DDA2 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		08E06BDB1E124FC90046DDA2 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		08E06BDD1E1250040046DDA2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			children = (
 				083CD4311E0F35B900784192 /* SWRevealViewController.h */,
 				083CD4321E0F35B900784192 /* SWRevealViewController.m */,
+				088FB83D1E1A22FA006523A3 /* FirebaseHelper.swift */,
 				08814E4F1E05D8D9004D9425 /* AppDelegate.swift */,
 				08814E511E05D8D9004D9425 /* ViewController.swift */,
 				083CD4341E0FA1E100784192 /* MainViewController.swift */,
@@ -497,6 +500,7 @@
 				088FB83A1E1A160A006523A3 /* ProfileViewController.swift in Sources */,
 				088FB8381E1A0D77006523A3 /* MenuViewController.swift in Sources */,
 				08E06BDA1E1245460046DDA2 /* MenuTableViewCell.swift in Sources */,
+				088FB83E1E1A22FA006523A3 /* FirebaseHelper.swift in Sources */,
 				08814E581E05D8D9004D9425 /* StartupScreens.xcdatamodeld in Sources */,
 				083CD42F1E0F185800784192 /* HelperFunctions.swift in Sources */,
 				083CD4331E0F35B900784192 /* SWRevealViewController.m in Sources */,

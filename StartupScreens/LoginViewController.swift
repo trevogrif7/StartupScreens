@@ -13,7 +13,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
     @IBOutlet weak var dividingLineView: UIView!
 
-    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var emailOrUsernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
@@ -60,19 +60,19 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         signInButton.layer.borderWidth = 1.0
         signInButton.layer.borderColor = UIColor.white.cgColor
         
-        self.emailTextField.center.x -= CGFloat(OFF_SCREEN_POINT)
+        self.emailOrUsernameTextField.center.x -= CGFloat(OFF_SCREEN_POINT)
         self.passwordTextField.center.x -= CGFloat(OFF_SCREEN_POINT)
         self.signInButton.center.x -= CGFloat(OFF_SCREEN_POINT)
         self.forgotPasswordButton.center.x -= CGFloat(OFF_SCREEN_POINT)
         self.createAccountButton.center.x -= CGFloat(OFF_SCREEN_POINT)
         
-        self.emailTextField.isHidden = true
+        self.emailOrUsernameTextField.isHidden = true
         self.passwordTextField.isHidden = true
         self.signInButton.isHidden = true
         self.forgotPasswordButton.isHidden = true
         self.createAccountButton.isHidden = true
         
-        self.emailTextField.font = UIFont(name: "GillSans", size: 20)
+        self.emailOrUsernameTextField.font = UIFont(name: "GillSans", size: 20)
         self.passwordTextField.font = UIFont(name: "GillSans", size: 20)
         self.signInButton.titleLabel?.font = UIFont(name: "GillSans", size: 20)
         self.forgotPasswordButton.titleLabel?.font = UIFont(name: "GillSans", size: 15)
@@ -116,8 +116,10 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         // Check to see if this is a known user
         let user = FIRAuth.auth()?.currentUser
         
+        // TODO: Pull in Username instead of email
+        
         if user != nil {
-            self.emailTextField.text = user?.email
+            self.emailOrUsernameTextField.text = user?.email
             
             // Pull in all data needed from Firebase
         }
@@ -129,10 +131,10 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     override func viewDidAppear(_ animated: Bool) {
         
         // Set email text field as first responders so that the user can immediately type their email address
-        self.emailTextField.becomeFirstResponder()
+        self.emailOrUsernameTextField.becomeFirstResponder()
 
         // Un-hide UI elements
-        self.emailTextField.isHidden = false
+        self.emailOrUsernameTextField.isHidden = false
         self.passwordTextField.isHidden = false
         self.signInButton.isHidden = false
         self.forgotPasswordButton.isHidden = false
@@ -144,7 +146,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
             self.initialLoadHasOccured = true
             
             UIView.animate(withDuration: 1.0, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-                self.emailTextField.center.x += CGFloat(self.OFF_SCREEN_POINT)
+                self.emailOrUsernameTextField.center.x += CGFloat(self.OFF_SCREEN_POINT)
                 
             })
             
@@ -177,7 +179,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBAction func createAccountButtonPressed(_ sender: Any) {
         
         // Disable buttons on view controller
-        self.emailTextField.isEnabled = false
+        self.emailOrUsernameTextField.isEnabled = false
         self.passwordTextField.isEnabled = false
         self.signInButton.isEnabled = false
         self.forgotPasswordButton.isEnabled = false
@@ -220,14 +222,14 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         self.createAccountProfileImage.contentMode = .scaleAspectFit
 
         // Enable buttons on view controller
-        self.emailTextField.isEnabled = true
+        self.emailOrUsernameTextField.isEnabled = true
         self.passwordTextField.isEnabled = true
         self.signInButton.isEnabled = true
         self.forgotPasswordButton.isEnabled = true
         self.createAccountButton.isEnabled = true
         
         // Make cursor move to username text field
-        self.emailTextField.becomeFirstResponder()
+        self.emailOrUsernameTextField.becomeFirstResponder()
         
         // Animate dismissal of create account view
         UIView.animate(withDuration: 0.3, animations: {
@@ -290,39 +292,15 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
             self.present(fieldLeftBlankAlert, animated: true, completion: nil)
             
-        }
-        else {
+        } else {
         
             // Check to see that passwords match
             if createAccountPasswordTextField.text == createAccountReEnterPasswordTextField.text {
                 
                 // Create account
-                FIRAuth.auth()?.createUser(withEmail: createAccountEmailTextField.text!, password: createAccountPasswordTextField.text!
-                    , completion: { (user, error) in
+                FirebaseHelper.firebaseHelper.createAccountWithEmail(emailAddress: createAccountEmailTextField.text!, password: createAccountPasswordTextField.text!, targetVC: self)
 
-                        // If acount creation didn't work show error as alert
-                        if error != nil {
-                            
-                            let errorAlert = UIAlertController(title: "Try Again", message: error?.localizedDescription, preferredStyle: .alert)
-                            
-                            errorAlert.addAction(self.alertAction)
-                            
-                            self.present(errorAlert, animated: true, completion: nil)
-                        }
-                        else {
-                            // Account created
-                            print("Account was created")
-                            
-                            // Update email and password fields
-                            self.emailTextField.text = self.createAccountEmailTextField.text
-                            self.passwordTextField.text = self.createAccountPasswordTextField.text
-                            
-                            // Sign the user in
-                            self.signIn()
-                        }
-                })
-            }
-            else {
+            } else {
                 // Passwords don't match, show alert
                 let passwordMisMatchAlert = UIAlertController(title: "Alert", message: "Passwords must match", preferredStyle: .alert)
                 
@@ -330,35 +308,13 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 
                 self.present(passwordMisMatchAlert, animated: true, completion: nil)
             } // Password matching check
+            
         } // Blank field check
         
-    }
-    
-    func signIn() {
+    } // CreateAccountSavedButtonPressed
         
-        // Sign in to account
-        FIRAuth.auth()?.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!
-            , completion: { (user, error) in
-                
-                // If sign in didn't work, show error as alert
-                if error != nil {
-                    let errorAlert = UIAlertController(title: "Try Again", message: error?.localizedDescription, preferredStyle: .alert)
-                    
-                    errorAlert.addAction(self.alertAction)
-                    
-                    self.present(errorAlert, animated: true, completion: nil)
-                }
-                else {
-                    print("You were signed in correctly")
-                    
-                    // Segue to next page of app
-                    self.performSegue(withIdentifier: "signedInSegue", sender: self)
-                }
-        })
-    }
-    
     @IBAction func signInButtonPressed(_ sender: UIButton) {
-        if emailTextField.text == "" || passwordTextField.text == "" {
+        if emailOrUsernameTextField.text == "" || passwordTextField.text == "" {
             let fieldLeftBlankAlert = UIAlertController(title: "Alert", message: "Please enter your email and password", preferredStyle: .alert)
             
             fieldLeftBlankAlert.addAction(self.alertAction)
@@ -367,7 +323,8 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
         }
         else {
-            self.signIn()
+            // Sign in to account
+            FirebaseHelper.firebaseHelper.signInWithEmailOrUsername(emailAddressOrUsername: self.emailOrUsernameTextField.text!, password: self.passwordTextField.text!, targetVC: self)
         }
     }
     
