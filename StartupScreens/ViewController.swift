@@ -52,6 +52,10 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        if FirebaseAuthHelper.instance.isLoggedIn() {
+            performSegue(withIdentifier: "stillSignedInSegue", sender: self)
+        }
+        
         // Fade in the background
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
             self.backgroundImage.alpha = 1.0

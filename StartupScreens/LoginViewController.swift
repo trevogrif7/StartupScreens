@@ -117,21 +117,12 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         self.view.backgroundColor = UIColor(red: 00/255, green: 112/255, blue: 190/255, alpha: 1.0)
         
-        // Firebase functionality
-        
-        // Check to see if this is a known user
-        let user = FIRAuth.auth()?.currentUser
-        
-        // TODO: Pull in Username instead of email
-        
-        if user != nil {
-            self.emailOrUsernameTextField.text = user?.email
+        // Check to see if user is logged in
+        if FirebaseAuthHelper.instance.isLoggedIn() {
             
             // Pull in all data needed from Firebase
         }
-        else {
-            
-        }
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -304,7 +295,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
             if createAccountPasswordTextField.text == createAccountReEnterPasswordTextField.text {
                 
                 // Create account
-                FirebaseHelper.firebaseHelper.createAccountWithEmail(emailAddress: createAccountEmailTextField.text!, password: createAccountPasswordTextField.text!, targetVC: self)
+                FirebaseAuthHelper.instance.createAccountWithEmail(username: createAccountUsernameTextField.text!, emailAddress: createAccountEmailTextField.text!, profileImage: createAccountProfileImage.image, password: createAccountPasswordTextField.text!, targetVC: self)
 
             } else {
                 // Passwords don't match, show alert
@@ -330,7 +321,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
         else {
             // Sign in to account
-            FirebaseHelper.firebaseHelper.signInWithEmailOrUsername(emailAddressOrUsername: self.emailOrUsernameTextField.text!, password: self.passwordTextField.text!, targetVC: self)
+            FirebaseAuthHelper.instance.signInWithEmailOrUsername(emailAddressOrUsername: self.emailOrUsernameTextField.text!, password: self.passwordTextField.text!, targetVC: self)
         }
     }
     

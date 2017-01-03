@@ -36,15 +36,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
-        self.signOut()
+        FirebaseAuthHelper.instance.signOut()
     }
 
-    func signOut () {
-        // Sign out of account
-        try! FIRAuth.auth()?.signOut()
-        
-        // Where should we transition to once we log out?
-        //self.performSegue(withIdentifier: "logoutSegue", sender: self)
-     
-    }
 }
