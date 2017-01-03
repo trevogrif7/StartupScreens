@@ -498,11 +498,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="messageTableCell" id="EeU-g0-VM2">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="messageTableCell" rowHeight="60" id="EeU-g0-VM2">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EeU-g0-VM2" id="yiK-jd-QdF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -517,11 +517,37 @@
                     </navigationItem>
                     <connections>
                         <outlet property="menuButton" destination="NlJ-af-qDp" id="8ic-iC-nZu"/>
+                        <segue destination="LG9-uf-gBu" kind="show" identifier="openExistingChatSegue" id="Skv-CA-E3x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PTA-eH-4wE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7428" y="181.25937031484258"/>
+        </scene>
+        <!--Chat-->
+        <scene sceneID="Huf-3j-ggs">
+            <objects>
+                <viewController id="dvh-1o-iro" customClass="ChatViewController" customModule="StartupScreens" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BwO-ck-Zbd"/>
+                        <viewControllerLayoutGuide type="bottom" id="qkZ-xK-OGT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UDG-w5-qTQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Chat" id="YES-Ab-wAG">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="nZP-Fz-JbV">
+                            <connections>
+                                <action selector="backButtonPressed:" destination="dvh-1o-iro" id="MNi-p6-3af"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1XP-qC-kJp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9508" y="-199"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="CDH-eo-4JW">
@@ -610,7 +636,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactsTableCell" id="1A2-uV-4cG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactsTableCell" id="1A2-uV-4cG" customClass="ContactTableViewCell" customModule="StartupScreens" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1A2-uV-4cG" id="1EK-Q9-ngT">
@@ -624,8 +650,19 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1QR-HA-2ld">
+                                                    <rect key="frame" x="46" y="11" width="321" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contactProfileImage" destination="Ijk-0c-sPh" id="DkR-RB-xWK"/>
+                                            <outlet property="contactUsername" destination="1QR-HA-2ld" id="Xmn-Fy-Si6"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -636,11 +673,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="P9J-W1-fiR"/>
+                    <navigationItem key="navigationItem" id="P9J-W1-fiR">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="eQQ-b4-dED"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contactsTableView" destination="WHh-pl-lHx" id="Hth-aD-K6s"/>
+                        <outlet property="menuButton" destination="eQQ-b4-dED" id="fsP-GL-kCG"/>
+                        <segue destination="LG9-uf-gBu" kind="show" identifier="chatWithContactSegue" id="M4A-4G-EMq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ScX-E2-p76" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7428" y="2452.6236881559221"/>
+            <point key="canvasLocation" x="7428" y="-623"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ilf-Nu-WEb">
@@ -730,7 +774,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gkO-mV-Xtd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6489" y="2453"/>
+            <point key="canvasLocation" x="6489" y="-623"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dyp-0I-uG6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LG9-uf-gBu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="s4i-vd-Xsq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dvh-1o-iro" kind="relationship" relationship="rootViewController" id="CmK-Dy-iug"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Px1-eC-7Vv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8569" y="-199"/>
         </scene>
     </scenes>
     <resources>
@@ -740,5 +802,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="BBC-nM-Hbo"/>
+        <segue reference="Skv-CA-E3x"/>
     </inferredMetricsTieBreakers>
 </document>

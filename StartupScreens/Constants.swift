@@ -20,6 +20,7 @@ class Const {
     static let USERNAME = "Username"
     static let EMAIL_ADDRESS = "Email_Address"
     static let PASSWORD = "Password"
+    static let PROFILE_IMAGE = "Profile_Image"
     static let DATA = "Data"
     
     // Messaging constants

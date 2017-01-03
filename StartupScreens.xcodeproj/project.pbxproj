@@ -30,6 +30,8 @@
 		08F4D86A1E1B1114004DD2E2 /* FirebaseDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F4D8691E1B1114004DD2E2 /* FirebaseDatabaseHelper.swift */; };
 		08F4D8701E1B1446004DD2E2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F4D86F1E1B1446004DD2E2 /* Constants.swift */; };
 		08F4D8721E1B22C9004DD2E2 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F4D8711E1B22C9004DD2E2 /* Contact.swift */; };
+		08F4D8741E1B6F34004DD2E2 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F4D8731E1B6F34004DD2E2 /* ContactTableViewCell.swift */; };
+		08F4D8761E1B76D4004DD2E2 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F4D8751E1B76D4004DD2E2 /* ChatViewController.swift */; };
 		2B938740B3CE5EDFE54D863B /* Pods_StartupScreensUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3983CE330253E250E690C227 /* Pods_StartupScreensUITests.framework */; };
 		856A218D38608356E51A1DF7 /* Pods_StartupScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFA610358F4A38CC3B69AAE /* Pods_StartupScreensTests.framework */; };
 		AB87C19D4A27A3D5CC936E57 /* Pods_StartupScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20B91390B65075843022C5A /* Pods_StartupScreens.framework */; };
@@ -85,6 +87,8 @@
 		08F4D8691E1B1114004DD2E2 /* FirebaseDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseHelper.swift; sourceTree = "<group>"; };
 		08F4D86F1E1B1446004DD2E2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		08F4D8711E1B22C9004DD2E2 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		08F4D8731E1B6F34004DD2E2 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		08F4D8751E1B76D4004DD2E2 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		144DEC7450602B4ED36C8BFB /* Pods-StartupScreens.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartupScreens.release.xcconfig"; path = "Pods/Target Support Files/Pods-StartupScreens/Pods-StartupScreens.release.xcconfig"; sourceTree = "<group>"; };
 		244EEEE90F1780EEBEC4B103 /* Pods-StartupScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartupScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StartupScreensTests/Pods-StartupScreensTests.release.xcconfig"; sourceTree = "<group>"; };
 		3983CE330253E250E690C227 /* Pods_StartupScreensUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StartupScreensUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +207,7 @@
 				088FB8391E1A160A006523A3 /* ProfileViewController.swift */,
 				08E06BDD1E1250040046DDA2 /* SettingsViewController.swift */,
 				08814E801E06596B004D9425 /* LoginViewController.swift */,
+				08F4D8751E1B76D4004DD2E2 /* ChatViewController.swift */,
 			);
 			name = VCs;
 			sourceTree = "<group>";
@@ -221,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				08E06BD91E1245460046DDA2 /* MenuTableViewCell.swift */,
+				08F4D8731E1B6F34004DD2E2 /* ContactTableViewCell.swift */,
 				08F4D8711E1B22C9004DD2E2 /* Contact.swift */,
 			);
 			name = Classes;
@@ -541,10 +547,12 @@
 				083CD4351E0FA1E100784192 /* MainViewController.swift in Sources */,
 				08E06BDE1E1250040046DDA2 /* SettingsViewController.swift in Sources */,
 				08814E811E06596B004D9425 /* LoginViewController.swift in Sources */,
+				08F4D8741E1B6F34004DD2E2 /* ContactTableViewCell.swift in Sources */,
 				08814E521E05D8D9004D9425 /* ViewController.swift in Sources */,
 				08814E501E05D8D9004D9425 /* AppDelegate.swift in Sources */,
 				08F4D8701E1B1446004DD2E2 /* Constants.swift in Sources */,
 				088FB83A1E1A160A006523A3 /* ProfileViewController.swift in Sources */,
+				08F4D8761E1B76D4004DD2E2 /* ChatViewController.swift in Sources */,
 				08F4D8681E1B1081004DD2E2 /* FirebaseAuthHelper.swift in Sources */,
 				08F4D86A1E1B1114004DD2E2 /* FirebaseDatabaseHelper.swift in Sources */,
 				088FB8381E1A0D77006523A3 /* MenuViewController.swift in Sources */,

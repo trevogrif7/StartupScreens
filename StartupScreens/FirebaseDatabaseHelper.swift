@@ -10,7 +10,13 @@ import UIKit
 import FirebaseDatabase
 import FirebaseStorage
 
+protocol FetchDataDelegate: class {
+    func dataReceived(contacts: [Contact])
+}
+
 class FirebaseDatabaseHelper {
+    
+    weak var delegate: FetchDataDelegate?
 
     // Singleton instance of FirebaseDatabaseHelper
     static let instance = FirebaseDatabaseHelper()
@@ -67,11 +73,49 @@ class FirebaseDatabaseHelper {
         return databaseRef.child(Const.DATA)
     }
 
-    func saveUser(UID: String, username: String, email: String, password: String) {
+    func saveUser(UID: String, username: String, email: String, password: String /*, profileImage: UIImage*/) {
         
-        let userData: Dictionary<String, Any> = [Const.USERNAME: username, Const.EMAIL_ADDRESS: email, Const.PASSWORD: password]
+        let userData: Dictionary<String, Any> = [Const.USERNAME: username, Const.EMAIL_ADDRESS: email, Const.PASSWORD: password /*, Const.PROFILE_IMAGE*/]
         
         contactsRef.child(UID).setValue(userData)
+        
+    }
+    
+    func getContacts() {
+
+        // Become observer
+        contactsRef.observeSingleEvent(of: .value, with: { (contactDatabase) in
+           
+            var contacts = [Contact]()
+            
+            // Get all contact dictionaries
+            if let myContacts = contactDatabase.value as? NSDictionary {
+
+                // Loop through all contact key value pairs ("key" is the uid of each contact)
+                for (key, value) in myContacts {
+
+                    // Access contact data dictionary
+                    if let myContactDictionary = value as? NSDictionary {
+                        
+                        // Save the individual pieces of data for this contact and append to array of contacts
+                        if let emailAddress = myContactDictionary[Const.EMAIL_ADDRESS] as? String {
+                            if let username = myContactDictionary[Const.USERNAME] as? String {
+                                let UID = key as! String
+                                
+                                let newContact = Contact(username: username, emailAddress: emailAddress, UID: UID)
+                                
+                                contacts.append(newContact)
+                                
+                            }
+                            
+                        }
+                    }
+                    
+                }
+            }
+            
+            self.delegate?.dataReceived(contacts: contacts)
+        })
         
     }
     

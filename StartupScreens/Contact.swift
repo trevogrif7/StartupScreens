@@ -10,36 +10,31 @@ import Foundation
 
 class Contact {
     
+    private var myUsername: String = ""
+    private var myEmailAddress: String = ""
+    private var myUID: String = ""
+    private var myProfileImage = UIImage()
+    
     var username: String {
-        get {
-            return self.username
-        }
-        set(username) {
-            self.username = username
-        }
+            return myUsername
     }
     
     var emailAddress: String {
-        get {
-            return self.emailAddress
-        }
-        set(emailAddress) {
-            self.emailAddress = emailAddress
-        }
+        return myEmailAddress
     }
 
     var UID: String {
-        get {
-            return self.UID
-        }
-        set(UID) {
-            self.UID = UID
-        }
+        return myUID
+    }
+    
+    var profileImage: UIImage {
+        return myProfileImage
     }
 
-    init(username: String, emailAddress: String, UID: String) {
-        self.username = username
-        self.emailAddress = emailAddress
-        self.UID = UID
+    init(username: String, emailAddress: String, UID: String /*,profileImage: UIImaeg*/) {
+        myUsername = username
+        myEmailAddress = emailAddress
+        myUID = UID
+        //myProfileImage = profileImage
     }
 }
