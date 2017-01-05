@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if FirebaseAuthHelper.instance.isLoggedIn() {
+        if FirebaseAuthHelper.sharedInstance.isLoggedIn() {
             performSegue(withIdentifier: "stillSignedInSegue", sender: self)
         }
         

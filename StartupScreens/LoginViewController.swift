@@ -41,9 +41,6 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
     let grayBorderColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1.0).cgColor
     
-    let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-
-    
     // Used to get images
     let imagePickerController = UIImagePickerController()
     
@@ -118,7 +115,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         self.view.backgroundColor = UIColor(red: 00/255, green: 112/255, blue: 190/255, alpha: 1.0)
         
         // Check to see if user is logged in
-        if FirebaseAuthHelper.instance.isLoggedIn() {
+        if FirebaseAuthHelper.sharedInstance.isLoggedIn() {
             
             // Pull in all data needed from Firebase
         }
@@ -285,7 +282,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
             let fieldLeftBlankAlert = UIAlertController(title: "Alert", message: "Please fill in all fields", preferredStyle: .alert)
 
-            fieldLeftBlankAlert.addAction(alertAction)
+            fieldLeftBlankAlert.addAction(Helper.sharedInstance.alertAction_OK)
             
             self.present(fieldLeftBlankAlert, animated: true, completion: nil)
             
@@ -295,13 +292,13 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
             if createAccountPasswordTextField.text == createAccountReEnterPasswordTextField.text {
                 
                 // Create account
-                FirebaseAuthHelper.instance.createAccountWithEmail(username: createAccountUsernameTextField.text!, emailAddress: createAccountEmailTextField.text!, profileImage: createAccountProfileImage.image, password: createAccountPasswordTextField.text!, targetVC: self)
+                FirebaseAuthHelper.sharedInstance.createAccountWithEmail(username: createAccountUsernameTextField.text!, emailAddress: createAccountEmailTextField.text!, profileImage: createAccountProfileImage.image, password: createAccountPasswordTextField.text!, targetVC: self)
 
             } else {
                 // Passwords don't match, show alert
                 let passwordMisMatchAlert = UIAlertController(title: "Alert", message: "Passwords must match", preferredStyle: .alert)
                 
-                passwordMisMatchAlert.addAction(alertAction)
+                passwordMisMatchAlert.addAction(Helper.sharedInstance.alertAction_OK)
                 
                 self.present(passwordMisMatchAlert, animated: true, completion: nil)
             } // Password matching check
@@ -314,14 +311,14 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         if emailOrUsernameTextField.text == "" || passwordTextField.text == "" {
             let fieldLeftBlankAlert = UIAlertController(title: "Alert", message: "Please enter your email and password", preferredStyle: .alert)
             
-            fieldLeftBlankAlert.addAction(self.alertAction)
+            fieldLeftBlankAlert.addAction(Helper.sharedInstance.alertAction_OK)
             
             self.present(fieldLeftBlankAlert, animated: true, completion: nil)
 
         }
         else {
             // Sign in to account
-            FirebaseAuthHelper.instance.signInWithEmailOrUsername(emailAddressOrUsername: self.emailOrUsernameTextField.text!, password: self.passwordTextField.text!, targetVC: self)
+            FirebaseAuthHelper.sharedInstance.signInWithEmailOrUsername(emailAddressOrUsername: self.emailOrUsernameTextField.text!, password: self.passwordTextField.text!, targetVC: self)
         }
     }
     
@@ -338,40 +335,9 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     @IBAction func profileImageTapped(_ sender: UITapGestureRecognizer) {
-
-        // If we have access to the camera but not the photo library
-        if UIImagePickerController.isSourceTypeAvailable(.camera) && !(UIImagePickerController.isSourceTypeAvailable(.photoLibrary)) {
-            
-            self.takePicture()
-   
-        // If we have access to the photo library but not the camera
-        } else if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) && !(UIImagePickerController.isSourceTypeAvailable(.camera)) {
-            
-            self.openPhotoLibrary()
         
-        // If we have access to both the camera and photo library
-        } else if UIImagePickerController.isSourceTypeAvailable(.camera) && UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            
-            let alertController = UIAlertController(title: "Please Select", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-            
-            let libraryAction = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.default, handler: {UIAlertAction in self.openPhotoLibrary()})
-            let cameraAction = UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.default, handler: {UIAlertAction in self.takePicture()})
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
-            
-            alertController.addAction(libraryAction)
-            alertController.addAction(cameraAction)
-            alertController.addAction(cancelAction)
-            
-            self.present(alertController, animated: true, completion: nil)
-
-        // If we don't have access to either source of images
-        } else {
-            let alertController = UIAlertController(title: "Alert", message: "Your device does not support the camera or photo library", preferredStyle: UIAlertControllerStyle.alert)
-            
-            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            
-            self.present(alertController, animated: true, completion: nil)
-        }
+        Helper.sharedInstance.selectVisualMedia(target: self, imagePicker: imagePickerController, includeVideo: false)
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -389,6 +355,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
    
+    // Dismiss image picker when cancel is pressed and no image is selected
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         
         // Dismiss image picker
@@ -397,35 +364,5 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         // Move cursor back to username test box
         self.createAccountUsernameTextField.becomeFirstResponder()
     }
-
-    
-    // Helper funcitons for accessing the camera and photo library
-    func takePicture() {
-        
-        // Select Camera as the source
-        imagePickerController.sourceType = .camera
-        
-        // Adding this line allows video too
-        //imagePickerController.mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera)!
-        
-        imagePickerController.allowsEditing = false
-        self.present(imagePickerController, animated: true, completion: nil)
-        
-    }
-    
-    func openPhotoLibrary() {
-        
-        // Select Photo Library as the source
-        imagePickerController.sourceType = .photoLibrary
-
-        // Adding this line allows video too
-        //imagePickerController.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
-        
-        imagePickerController.allowsEditing = false
-        self.present(imagePickerController, animated: true, completion: nil)
-        
-    }
-    
-    
 
 }

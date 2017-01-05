@@ -19,7 +19,7 @@ class FirebaseDatabaseHelper {
     weak var delegate: FetchDataDelegate?
 
     // Singleton instance of FirebaseDatabaseHelper
-    static let instance = FirebaseDatabaseHelper()
+    static let sharedInstance = FirebaseDatabaseHelper()
     
     // Limit the create of these objects to this one
     private init () {}

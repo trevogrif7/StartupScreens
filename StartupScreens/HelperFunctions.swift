@@ -9,6 +9,91 @@
 import Foundation
 import UIKit
 
+class Helper {
+    
+    // Singleton instance of FirebaseAuthHelper class
+    static let sharedInstance = Helper()
+    
+    // Limit the create of these objects to this one
+    private init () {}
+
+    // Define OK alert Action with cancel style
+    let alertAction_OK = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+
+    let alertAction_Cancel = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+    
+    // Function to handle selection and capture of image and videos
+    func selectVisualMedia(target: UIViewController, imagePicker: UIImagePickerController, includeVideo: Bool) {
+        // If we have access to the camera but not the photo library
+        if UIImagePickerController.isSourceTypeAvailable(.camera) && !(UIImagePickerController.isSourceTypeAvailable(.photoLibrary)) {
+            
+            self.captureMedia(target: target, imagePicker: imagePicker, includeVideo: includeVideo)
+            
+            // If we have access to the photo library but not the camera
+        } else if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) && !(UIImagePickerController.isSourceTypeAvailable(.camera)) {
+            
+            self.openPhotoLibrary(target: target, imagePicker: imagePicker, includeVideo: includeVideo)
+            
+            // If we have access to both the camera and photo library
+        } else if UIImagePickerController.isSourceTypeAvailable(.camera) && UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            
+            let alertController = UIAlertController(title: "Please Select", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+            
+            let libraryAction = UIAlertAction(title: "Media Library", style: UIAlertActionStyle.default, handler: {UIAlertAction in self.openPhotoLibrary(target: target, imagePicker: imagePicker, includeVideo: includeVideo)})
+            let cameraAction = UIAlertAction(title: "Capture Photo/Video", style: UIAlertActionStyle.default, handler: {UIAlertAction in self.captureMedia(target: target, imagePicker: imagePicker, includeVideo: includeVideo)})
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+            
+            alertController.addAction(libraryAction)
+            alertController.addAction(cameraAction)
+            alertController.addAction(cancelAction)
+            
+            target.present(alertController, animated: true, completion: nil)
+            
+            // If we don't have access to either source of images
+        } else {
+            let alertController = UIAlertController(title: "Alert", message: "Your device does not support the camera or photo library", preferredStyle: UIAlertControllerStyle.alert)
+            
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            
+            target.present(alertController, animated: true, completion: nil)
+        }
+
+    }
+
+    // Helper funciton for accessing the camera
+    private func captureMedia(target: UIViewController, imagePicker: UIImagePickerController, includeVideo: Bool) {
+        
+        // Select Camera as the source
+        imagePicker.sourceType = .camera
+
+        if includeVideo == true {
+            // Allow access videos
+            imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera)!
+        }
+        
+        imagePicker.allowsEditing = true
+        target.present(imagePicker, animated: true, completion: nil)
+        
+    }
+    
+    // Helper funciton for accessing the photo library
+    private func openPhotoLibrary(target: UIViewController, imagePicker: UIImagePickerController, includeVideo: Bool) {
+        
+        // Select Photo Library as the source
+        imagePicker.sourceType = .photoLibrary
+        
+        if includeVideo == true {
+            // Allow access videos
+            imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        }
+        
+        imagePicker.allowsEditing = true
+        target.present(imagePicker, animated: true, completion: nil)
+        
+    }
+
+}
+
 extension UIView {
     
     // Make UIView item fade in

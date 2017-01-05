@@ -36,7 +36,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
-        FirebaseAuthHelper.instance.signOut()
+        FirebaseAuthHelper.sharedInstance.signOut()
     }
 
 }

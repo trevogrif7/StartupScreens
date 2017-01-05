@@ -18,8 +18,8 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        FirebaseDatabaseHelper.instance.delegate = self
-        FirebaseDatabaseHelper.instance.getContacts()
+        FirebaseDatabaseHelper.sharedInstance.delegate = self
+        FirebaseDatabaseHelper.sharedInstance.getContacts()
      
         // Change size of slide out menu
         self.revealViewController().rearViewRevealWidth = 200

@@ -13,12 +13,10 @@ import FirebaseAuth
 class FirebaseAuthHelper {
     
     // Singleton instance of FirebaseAuthHelper class
-    static let instance = FirebaseAuthHelper()
+    static let sharedInstance = FirebaseAuthHelper()
     
     // Limit the create of these objects to this one
     private init () {}
-    
-    let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
     
     func createAccountWithEmail(username: String, emailAddress: String, profileImage: UIImage?, password: String, targetVC: UIViewController) {
         
@@ -32,7 +30,7 @@ class FirebaseAuthHelper {
                     
                     let errorAlert = UIAlertController(title: "Oops!", message: error?.localizedDescription, preferredStyle: .alert)
                     
-                    errorAlert.addAction(self.alertAction)
+                    errorAlert.addAction(Helper.sharedInstance.alertAction_OK)
                     
                     targetVC.present(errorAlert, animated: true, completion: nil)
                     
@@ -44,7 +42,7 @@ class FirebaseAuthHelper {
                         print("Account was created")
                         
                         // Create user in database
-                        FirebaseDatabaseHelper.instance.saveUser(UID: user!.uid, username: username, email: emailAddress, password: password)
+                        FirebaseDatabaseHelper.sharedInstance.saveUser(UID: user!.uid, username: username, email: emailAddress, password: password)
                         
                         self.signInWithEmailOrUsername(emailAddressOrUsername: emailAddress , password: password, targetVC: targetVC)
                     }
@@ -66,7 +64,7 @@ class FirebaseAuthHelper {
                     print("Error encountered when attempting to sign in")
                     let errorAlert = UIAlertController(title: "Oops!", message: error?.localizedDescription, preferredStyle: .alert)
                     
-                    errorAlert.addAction(self.alertAction)
+                    errorAlert.addAction(Helper.sharedInstance.alertAction_OK)
                     
                     targetVC.present(errorAlert, animated: true, completion: nil)
                 }
@@ -104,7 +102,7 @@ class FirebaseAuthHelper {
                 print("Error encountered when attempting to sign in anonymously")
                 let errorAlert = UIAlertController(title: "Oops!", message: error?.localizedDescription, preferredStyle: .alert)
                 
-                errorAlert.addAction(self.alertAction)
+                errorAlert.addAction(Helper.sharedInstance.alertAction_OK)
                 
                 targetVC.present(errorAlert, animated: true, completion: nil)
             } else {
@@ -132,18 +130,18 @@ class FirebaseAuthHelper {
         
     }
     
-    func signOut() -> Bool {
+    func signOut() /*-> Bool*/ {
         // Sign out of account if currently signed in
         if FIRAuth.auth()?.currentUser != nil {
             do {
                 try FIRAuth.auth()?.signOut()
-                return true
+                //return true
             } catch {
-                return false
+                //return false
             }
         }
         
-        return true
+        //return true
     }
     
     
