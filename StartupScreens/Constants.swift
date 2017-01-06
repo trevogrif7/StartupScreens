@@ -24,9 +24,9 @@ class Const {
     static let DATA = "Data"
     
     // Messaging constants
-    static let TEXT = "Text"
+    static let MESSAGE_TEXT = "Message_Text"
     static let SENDER_ID = "Sender_ID"
-    static let SENDER = "Sender"
+    static let SENDER_NAME = "Sender_Name"
     static let URL = "url"
 
 }

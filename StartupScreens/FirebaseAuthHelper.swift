@@ -13,7 +13,14 @@ import FirebaseAuth
 class FirebaseAuthHelper {
     
     // Singleton instance of FirebaseAuthHelper class
-    static let sharedInstance = FirebaseAuthHelper()
+    private static let _sharedInstance = FirebaseAuthHelper()
+    
+    static var sharedInstance: FirebaseAuthHelper {
+        return _sharedInstance
+    }
+    
+    // Will hold current user's username
+    var username = ""
     
     // Limit the create of these objects to this one
     private init () {}
@@ -115,6 +122,10 @@ class FirebaseAuthHelper {
                 targetVC.performSegue(withIdentifier: "signedInSegue", sender: nil)
             }
         })
+    }
+    
+    func userID() -> String {
+        return FIRAuth.auth()!.currentUser!.uid
     }
     
     func isLoggedIn() -> Bool {

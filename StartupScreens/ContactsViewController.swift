@@ -34,6 +34,14 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
 
     func dataReceived(contacts: [Contact]) {
         self.contacts = contacts
+        
+        // Find the current user
+        for contact in self.contacts {
+            if contact.UID == FirebaseAuthHelper.sharedInstance.userID() {
+                FirebaseAuthHelper.sharedInstance.username = contact.username
+            }
+        }
+        
         self.contactsTableView.reloadData()
     }
     
